@@ -1,0 +1,102 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="ticket">
+      <h2 data-cy="ticketDetailsHeading"><span jhiTranslate="lbApp.ticket.detail.title">Ticket</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbApp.ticket.id">Id</span></dt>
+        <dd>
+          <span>{{ ticket.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticket.ticketNo">Ticket No</span></dt>
+        <dd>
+          <span>{{ ticket.ticketNo }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticket.statutFiche">Statut Fiche</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'lbApp.StatutFiche.' + ticket.statutFiche }}">{{ ticket.statutFiche }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticket.closeBy">Close By</span></dt>
+        <dd>
+          <span>{{ ticket.closeBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticket.closeDate">Close Date</span></dt>
+        <dd>
+          <span>{{ ticket.closeDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticket.isClosed">Is Closed</span></dt>
+        <dd>
+          <span>{{ ticket.isClosed }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticket.closeById">Close By Id</span></dt>
+        <dd>
+          <span>{{ ticket.closeById }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticket.payBy">Pay By</span></dt>
+        <dd>
+          <span>{{ ticket.payBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticket.payDate">Pay Date</span></dt>
+        <dd>
+          <span>{{ ticket.payDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticket.isPay">Is Pay</span></dt>
+        <dd>
+          <span>{{ ticket.isPay }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticket.payById">Pay By Id</span></dt>
+        <dd>
+          <span>{{ ticket.payById }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticket.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ ticket.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticket.createdDate">Created Date</span></dt>
+        <dd>
+          <span>{{ ticket.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticket.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ ticket.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticket.lastModifiedDate">Last Modified Date</span></dt>
+        <dd>
+          <span>{{ ticket.lastModifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticket.pointOfSale">Point Of Sale</span></dt>
+        <dd>
+          <div *ngIf="ticket.pointOfSale">
+            <a [routerLink]="['/point-of-sale-my-suffix', ticket.pointOfSale?.id, 'view']">{{ ticket.pointOfSale?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticket.tirage">Tirage</span></dt>
+        <dd>
+          <div *ngIf="ticket.tirage">
+            <a [routerLink]="['/tirage-my-suffix', ticket.tirage?.id, 'view']">{{ ticket.tirage?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticket.userSaleAccount">User Sale Account</span></dt>
+        <dd>
+          <div *ngIf="ticket.userSaleAccount">
+            <a [routerLink]="['/user-sale-account-my-suffix', ticket.userSaleAccount?.id, 'view']">{{ ticket.userSaleAccount?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/ticket-my-suffix', ticket.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

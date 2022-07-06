@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="userPayment">
+      <h2 data-cy="userPaymentDetailsHeading"><span jhiTranslate="lbApp.userPayment.detail.title">User Payment</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbApp.userPayment.id">Id</span></dt>
+        <dd>
+          <span>{{ userPayment.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userPayment.payAmount">Pay Amount</span></dt>
+        <dd>
+          <span>{{ userPayment.payAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userPayment.balance">Balance</span></dt>
+        <dd>
+          <span>{{ userPayment.balance }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userPayment.startDate">Start Date</span></dt>
+        <dd>
+          <span>{{ userPayment.startDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userPayment.endDate">End Date</span></dt>
+        <dd>
+          <span>{{ userPayment.endDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userPayment.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ userPayment.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userPayment.createdDate">Created Date</span></dt>
+        <dd>
+          <span>{{ userPayment.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userPayment.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ userPayment.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userPayment.lastModifiedDate">Last Modified Date</span></dt>
+        <dd>
+          <span>{{ userPayment.lastModifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userPayment.utilisateur">Utilisateur</span></dt>
+        <dd>
+          <div *ngIf="userPayment.utilisateur">
+            <a [routerLink]="['/utilisateur-my-suffix', userPayment.utilisateur?.id, 'view']">{{ userPayment.utilisateur?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/user-payment-my-suffix', userPayment.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

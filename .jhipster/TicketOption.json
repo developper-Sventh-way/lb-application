@@ -1,0 +1,81 @@
+{
+  "angularJSSuffix": "mySuffix",
+  "applications": "*",
+  "changelogDate": "20220706234153",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "ticket_option",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "contenu",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "7",
+      "fieldValidateRulesMinlength": "2"
+    },
+    {
+      "fieldName": "playAmount",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "typeOption",
+      "fieldType": "TypeOption",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "MARIAGE,LOTO3CHIF,LOTO4CHIF,LOTO5CHIF,PREMIERLOT,DEUXIEMELOT,TROISIEMELOT,ALEATOIRE,LOTO4CHIFOPTION1,LOTO4CHIFOPTION2,LOTO4CHIFOPTION3,LOTO5CHIFOPTION1,LOTO5CHIFOPTION2,LOTO5CHIFOPTION3"
+    },
+    {
+      "fieldName": "statutOption",
+      "fieldType": "StatutFiche",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "ACTIVE,ANNULED,WIN,LOSE"
+    },
+    {
+      "fieldName": "multiplicateur",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength", "required"],
+      "fieldValidateRulesMaxlength": "45",
+      "fieldValidateRulesMinlength": "4"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "45",
+      "fieldValidateRulesMinlength": "4"
+    },
+    {
+      "fieldName": "lastModifiedDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "TicketOption",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "ticket",
+      "otherEntityRelationshipName": "ticketOption",
+      "relationshipName": "ticket",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

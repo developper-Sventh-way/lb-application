@@ -1,0 +1,10 @@
+{
+  "lbApp": {
+    "UserStatut": {
+      "null": "",
+      "ACTIVE": "ACTIVE",
+      "BLOQUE": "BLOQUE",
+      "CLOSED": "CLOSED"
+    }
+  }
+}

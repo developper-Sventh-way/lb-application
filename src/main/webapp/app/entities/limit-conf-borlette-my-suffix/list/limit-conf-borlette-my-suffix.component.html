@@ -1,0 +1,132 @@
+<div>
+  <h2 id="page-heading" data-cy="LimitConfBorletteHeading">
+    <span jhiTranslate="lbApp.limitConfBorlette.home.title">Limit Conf Borlettes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="lbApp.limitConfBorlette.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-limit-conf-borlette-my-suffix"
+        [routerLink]="['/limit-conf-borlette-my-suffix/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="lbApp.limitConfBorlette.home.createLabel"> Create a new Limit Conf Borlette </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="limitConfBorlettes?.length === 0">
+    <span jhiTranslate="lbApp.limitConfBorlette.home.notFound">No limitConfBorlettes found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="limitConfBorlettes && limitConfBorlettes.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="lbApp.limitConfBorlette.id">Id</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nombreValue">
+            <span jhiTranslate="lbApp.limitConfBorlette.nombreValue">Nombre Value</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="limit">
+            <span jhiTranslate="lbApp.limitConfBorlette.limit">Limit</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="limitStatut">
+            <span jhiTranslate="lbApp.limitConfBorlette.limitStatut">Limit Statut</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="lbApp.limitConfBorlette.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdDate">
+            <span jhiTranslate="lbApp.limitConfBorlette.createdDate">Created Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="lbApp.limitConfBorlette.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedDate">
+            <span jhiTranslate="lbApp.limitConfBorlette.lastModifiedDate">Last Modified Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="borletteConf.id">
+            <span jhiTranslate="lbApp.limitConfBorlette.borletteConf">Borlette Conf</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let limitConfBorlette of limitConfBorlettes; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/limit-conf-borlette-my-suffix', limitConfBorlette.id, 'view']">{{ limitConfBorlette.id }}</a>
+          </td>
+          <td>{{ limitConfBorlette.nombreValue }}</td>
+          <td>{{ limitConfBorlette.limit }}</td>
+          <td jhiTranslate="{{ 'lbApp.TypeOption.' + limitConfBorlette.limitStatut }}">{{ limitConfBorlette.limitStatut }}</td>
+          <td>{{ limitConfBorlette.createdBy }}</td>
+          <td>{{ limitConfBorlette.createdDate | formatMediumDatetime }}</td>
+          <td>{{ limitConfBorlette.lastModifiedBy }}</td>
+          <td>{{ limitConfBorlette.lastModifiedDate | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="limitConfBorlette.borletteConf">
+              <a [routerLink]="['/borlette-conf-my-suffix', limitConfBorlette.borletteConf?.id, 'view']">{{
+                limitConfBorlette.borletteConf?.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/limit-conf-borlette-my-suffix', limitConfBorlette.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/limit-conf-borlette-my-suffix', limitConfBorlette.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(limitConfBorlette)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="limitConfBorlettes && limitConfBorlettes.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

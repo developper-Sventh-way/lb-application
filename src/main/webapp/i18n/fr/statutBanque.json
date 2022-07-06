@@ -1,0 +1,9 @@
+{
+  "lbApp": {
+    "StatutBanque": {
+      "null": "",
+      "OPEN": "OPEN",
+      "CLOSE": "CLOSE"
+    }
+  }
+}

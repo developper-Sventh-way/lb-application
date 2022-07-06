@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="transactionHistories">
+      <h2 data-cy="transactionHistoriesDetailsHeading">
+        <span jhiTranslate="lbApp.transactionHistories.detail.title">Transaction Histories</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbApp.transactionHistories.id">Id</span></dt>
+        <dd>
+          <span>{{ transactionHistories.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.transactionHistories.type">Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'lbApp.TransactionType.' + transactionHistories.type }}">{{ transactionHistories.type }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.transactionHistories.description">Description</span></dt>
+        <dd>
+          <span>{{ transactionHistories.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.transactionHistories.montant">Montant</span></dt>
+        <dd>
+          <span>{{ transactionHistories.montant }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.transactionHistories.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ transactionHistories.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.transactionHistories.createdDate">Created Date</span></dt>
+        <dd>
+          <span>{{ transactionHistories.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.transactionHistories.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ transactionHistories.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.transactionHistories.lastModifiedDate">Last Modified Date</span></dt>
+        <dd>
+          <span>{{ transactionHistories.lastModifiedDate | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/transaction-histories-my-suffix', transactionHistories.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

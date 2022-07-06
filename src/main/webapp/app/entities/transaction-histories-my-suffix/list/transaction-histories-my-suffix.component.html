@@ -1,0 +1,122 @@
+<div>
+  <h2 id="page-heading" data-cy="TransactionHistoriesHeading">
+    <span jhiTranslate="lbApp.transactionHistories.home.title">Transaction Histories</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="lbApp.transactionHistories.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-transaction-histories-my-suffix"
+        [routerLink]="['/transaction-histories-my-suffix/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="lbApp.transactionHistories.home.createLabel"> Create a new Transaction Histories </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="transactionHistories?.length === 0">
+    <span jhiTranslate="lbApp.transactionHistories.home.notFound">No transactionHistories found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="transactionHistories && transactionHistories.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="lbApp.transactionHistories.id">Id</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="type">
+            <span jhiTranslate="lbApp.transactionHistories.type">Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <span jhiTranslate="lbApp.transactionHistories.description">Description</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="montant">
+            <span jhiTranslate="lbApp.transactionHistories.montant">Montant</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="lbApp.transactionHistories.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdDate">
+            <span jhiTranslate="lbApp.transactionHistories.createdDate">Created Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="lbApp.transactionHistories.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedDate">
+            <span jhiTranslate="lbApp.transactionHistories.lastModifiedDate">Last Modified Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transactionHistories of transactionHistories; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/transaction-histories-my-suffix', transactionHistories.id, 'view']">{{ transactionHistories.id }}</a>
+          </td>
+          <td jhiTranslate="{{ 'lbApp.TransactionType.' + transactionHistories.type }}">{{ transactionHistories.type }}</td>
+          <td>{{ transactionHistories.description }}</td>
+          <td>{{ transactionHistories.montant }}</td>
+          <td>{{ transactionHistories.createdBy }}</td>
+          <td>{{ transactionHistories.createdDate | formatMediumDatetime }}</td>
+          <td>{{ transactionHistories.lastModifiedBy }}</td>
+          <td>{{ transactionHistories.lastModifiedDate | formatMediumDatetime }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/transaction-histories-my-suffix', transactionHistories.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/transaction-histories-my-suffix', transactionHistories.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(transactionHistories)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="transactionHistories && transactionHistories.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

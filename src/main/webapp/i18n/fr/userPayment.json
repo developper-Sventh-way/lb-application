@@ -1,0 +1,32 @@
+{
+  "lbApp": {
+    "userPayment": {
+      "home": {
+        "title": "UserPayments",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau User Payment",
+        "createOrEditLabel": "Créer ou éditer un User Payment",
+        "notFound": "Aucun User Payment trouvé"
+      },
+      "created": "Un nouveau User Payment a été créé avec l'identifiant {{ param }}",
+      "updated": "Le User Payment avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le User Payment avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le User Payment {{ id }} ?"
+      },
+      "detail": {
+        "title": "User Payment"
+      },
+      "id": "Id",
+      "payAmount": "Pay Amount",
+      "balance": "Balance",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date",
+      "utilisateur": "Utilisateur"
+    }
+  }
+}

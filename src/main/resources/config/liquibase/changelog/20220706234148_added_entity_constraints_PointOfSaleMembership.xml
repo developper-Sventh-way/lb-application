@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity PointOfSaleMembership.
+    -->
+    <changeSet id="20220706234148-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="membership_conf_id"
+                                 baseTableName="point_of_sale_membership"
+                                 constraintName="fk_point_of_sale_membership__membership_conf_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="membership_conf"/>
+
+        <addForeignKeyConstraint baseColumnNames="utilisateur_id"
+                                 baseTableName="point_of_sale_membership"
+                                 constraintName="fk_point_of_sale_membership__utilisateur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="utilisateur"/>
+    </changeSet>
+</databaseChangeLog>

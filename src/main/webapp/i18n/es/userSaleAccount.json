@@ -1,0 +1,34 @@
+{
+  "lbApp": {
+    "userSaleAccount": {
+      "home": {
+        "title": "User Sale Accounts",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo User Sale Account",
+        "createOrEditLabel": "Crear o editar User Sale Account",
+        "notFound": "Ningún User Sale Accounts encontrado"
+      },
+      "created": "Un nuevo User Sale Account ha sido creado con el identificador {{ param }}",
+      "updated": "Un User Sale Account ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un User Sale Account ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar User Sale Account {{ id }}?"
+      },
+      "detail": {
+        "title": "User Sale Account"
+      },
+      "id": "Id",
+      "balance": "Balance",
+      "lastPayment": "Last Payment",
+      "statut": "Statut",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date",
+      "ticket": "Ticket",
+      "utilisateur": "Utilisateur"
+    }
+  }
+}

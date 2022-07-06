@@ -1,0 +1,30 @@
+{
+  "lbApp": {
+    "pointOfSaleMembership": {
+      "home": {
+        "title": "Point Of Sale Memberships",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Point Of Sale Membership",
+        "createOrEditLabel": "Crear o editar Point Of Sale Membership",
+        "notFound": "Ningún Point Of Sale Memberships encontrado"
+      },
+      "created": "Un nuevo Point Of Sale Membership ha sido creado con el identificador {{ param }}",
+      "updated": "Un Point Of Sale Membership ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Point Of Sale Membership ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Point Of Sale Membership {{ id }}?"
+      },
+      "detail": {
+        "title": "Point Of Sale Membership"
+      },
+      "id": "Id",
+      "typePoint": "Type Point",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date",
+      "membershipConf": "Membership Conf",
+      "utilisateur": "Utilisateur"
+    }
+  }
+}

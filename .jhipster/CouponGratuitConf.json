@@ -1,0 +1,67 @@
+{
+  "angularJSSuffix": "mySuffix",
+  "applications": "*",
+  "changelogDate": "20220706234140",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "coupon_gratuit_conf",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "typeOption",
+      "fieldType": "TypeOption",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "MARIAGE,LOTO3CHIF,LOTO4CHIF,LOTO5CHIF,PREMIERLOT,DEUXIEMELOT,TROISIEMELOT,ALEATOIRE,LOTO4CHIFOPTION1,LOTO4CHIFOPTION2,LOTO4CHIFOPTION3,LOTO5CHIFOPTION1,LOTO5CHIFOPTION2,LOTO5CHIFOPTION3"
+    },
+    {
+      "fieldName": "maximumCount",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "obstinateAmount",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "statut",
+      "fieldType": "UserStatut",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "ACTIVE,BLOQUE,CLOSED"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "45",
+      "fieldValidateRulesMinlength": "4"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "45",
+      "fieldValidateRulesMinlength": "4"
+    },
+    {
+      "fieldName": "lastModifiedDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "CouponGratuitConf",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,375 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-utilisateur-my-suffix-heading"
+        data-cy="UtilisateurCreateUpdateHeading"
+        jhiTranslate="lbApp.utilisateur.home.createOrEditLabel"
+      >
+        Create or edit a Utilisateur
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="lbApp.utilisateur.id" for="field_id">Id</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          <div *ngIf="editForm.get('id')!.invalid && (editForm.get('id')!.dirty || editForm.get('id')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('id')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('id')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.utilisateur.userName" for="field_userName">User Name</label>
+          <input type="text" class="form-control" name="userName" id="field_userName" data-cy="userName" formControlName="userName" />
+          <div *ngIf="editForm.get('userName')!.invalid && (editForm.get('userName')!.dirty || editForm.get('userName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('userName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('userName')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 4 }"
+            >
+              This field is required to be at least 4 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('userName')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 45 }"
+            >
+              This field cannot be longer than 45 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.utilisateur.password" for="field_password">Password</label>
+          <input type="text" class="form-control" name="password" id="field_password" data-cy="password" formControlName="password" />
+          <div *ngIf="editForm.get('password')!.invalid && (editForm.get('password')!.dirty || editForm.get('password')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('password')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('password')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 100 }"
+            >
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.utilisateur.typeUser" for="field_typeUser">Type User</label>
+          <select class="form-control" name="typeUser" formControlName="typeUser" id="field_typeUser" data-cy="typeUser">
+            <option [ngValue]="null">{{ 'lbApp.TypeUser.null' | translate }}</option>
+            <option *ngFor="let typeUser of typeUserValues" [value]="typeUser">{{ 'lbApp.TypeUser.' + typeUser | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('typeUser')!.invalid && (editForm.get('typeUser')!.dirty || editForm.get('typeUser')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('typeUser')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.utilisateur.nom" for="field_nom">Nom</label>
+          <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
+          <div *ngIf="editForm.get('nom')!.invalid && (editForm.get('nom')!.dirty || editForm.get('nom')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nom')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nom')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 4 }"
+            >
+              This field is required to be at least 4 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nom')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 40 }"
+            >
+              This field cannot be longer than 40 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.utilisateur.prenom" for="field_prenom">Prenom</label>
+          <input type="text" class="form-control" name="prenom" id="field_prenom" data-cy="prenom" formControlName="prenom" />
+          <div *ngIf="editForm.get('prenom')!.invalid && (editForm.get('prenom')!.dirty || editForm.get('prenom')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('prenom')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('prenom')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 4 }"
+            >
+              This field is required to be at least 4 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('prenom')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 40 }"
+            >
+              This field cannot be longer than 40 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.utilisateur.sexe" for="field_sexe">Sexe</label>
+          <select class="form-control" name="sexe" formControlName="sexe" id="field_sexe" data-cy="sexe">
+            <option [ngValue]="null">{{ 'lbApp.Sexe.null' | translate }}</option>
+            <option *ngFor="let sexe of sexeValues" [value]="sexe">{{ 'lbApp.Sexe.' + sexe | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('sexe')!.invalid && (editForm.get('sexe')!.dirty || editForm.get('sexe')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('sexe')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.utilisateur.nifOuCin" for="field_nifOuCin">Nif Ou Cin</label>
+          <input type="text" class="form-control" name="nifOuCin" id="field_nifOuCin" data-cy="nifOuCin" formControlName="nifOuCin" />
+          <div *ngIf="editForm.get('nifOuCin')!.invalid && (editForm.get('nifOuCin')!.dirty || editForm.get('nifOuCin')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nifOuCin')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 20 }"
+            >
+              This field cannot be longer than 20 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.utilisateur.statut" for="field_statut">Statut</label>
+          <select class="form-control" name="statut" formControlName="statut" id="field_statut" data-cy="statut">
+            <option [ngValue]="null">{{ 'lbApp.UserStatut.null' | translate }}</option>
+            <option *ngFor="let userStatut of userStatutValues" [value]="userStatut">
+              {{ 'lbApp.UserStatut.' + userStatut | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('statut')!.invalid && (editForm.get('statut')!.dirty || editForm.get('statut')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('statut')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.utilisateur.createdBy" for="field_createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+          <div *ngIf="editForm.get('createdBy')!.invalid && (editForm.get('createdBy')!.dirty || editForm.get('createdBy')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('createdBy')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('createdBy')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 4 }"
+            >
+              This field is required to be at least 4 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('createdBy')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 45 }"
+            >
+              This field cannot be longer than 45 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.utilisateur.createdDate" for="field_createdDate">Created Date</label>
+          <div class="d-flex">
+            <input
+              id="field_createdDate"
+              data-cy="createdDate"
+              type="datetime-local"
+              class="form-control"
+              name="createdDate"
+              formControlName="createdDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('createdDate')!.invalid && (editForm.get('createdDate')!.dirty || editForm.get('createdDate')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('createdDate')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('createdDate')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.utilisateur.lastModifiedBy" for="field_lastModifiedBy">Last Modified By</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lastModifiedBy"
+            id="field_lastModifiedBy"
+            data-cy="lastModifiedBy"
+            formControlName="lastModifiedBy"
+          />
+          <div
+            *ngIf="
+              editForm.get('lastModifiedBy')!.invalid && (editForm.get('lastModifiedBy')!.dirty || editForm.get('lastModifiedBy')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('lastModifiedBy')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 4 }"
+            >
+              This field is required to be at least 4 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('lastModifiedBy')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 45 }"
+            >
+              This field cannot be longer than 45 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.utilisateur.lastModifiedDate" for="field_lastModifiedDate"
+            >Last Modified Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_lastModifiedDate"
+              data-cy="lastModifiedDate"
+              type="datetime-local"
+              class="form-control"
+              name="lastModifiedDate"
+              formControlName="lastModifiedDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.utilisateur.creditSolde" for="field_creditSolde">Credit Solde</label>
+          <select class="form-control" id="field_creditSolde" data-cy="creditSolde" name="creditSolde" formControlName="creditSolde">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                creditSoldeOption.id === editForm.get('creditSolde')!.value?.id ? editForm.get('creditSolde')!.value : creditSoldeOption
+              "
+              *ngFor="let creditSoldeOption of creditSoldesCollection; trackBy: trackCreditSoldeMySuffixById"
+            >
+              {{ creditSoldeOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.utilisateur.userPaymentConf" for="field_userPaymentConf">User Payment Conf</label>
+          <select
+            class="form-control"
+            id="field_userPaymentConf"
+            data-cy="userPaymentConf"
+            name="userPaymentConf"
+            formControlName="userPaymentConf"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                userPaymentConfOption.id === editForm.get('userPaymentConf')!.value?.id
+                  ? editForm.get('userPaymentConf')!.value
+                  : userPaymentConfOption
+              "
+              *ngFor="let userPaymentConfOption of userPaymentConfsCollection; trackBy: trackUserPaymentConfMySuffixById"
+            >
+              {{ userPaymentConfOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.utilisateur.pointOfSale" for="field_pointOfSale">Point Of Sale</label>
+          <select class="form-control" id="field_pointOfSale" data-cy="pointOfSale" name="pointOfSale" formControlName="pointOfSale">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                pointOfSaleOption.id === editForm.get('pointOfSale')!.value?.id ? editForm.get('pointOfSale')!.value : pointOfSaleOption
+              "
+              *ngFor="let pointOfSaleOption of pointOfSalesSharedCollection; trackBy: trackPointOfSaleMySuffixById"
+            >
+              {{ pointOfSaleOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

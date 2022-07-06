@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="pointOfSale">
+      <h2 data-cy="pointOfSaleDetailsHeading"><span jhiTranslate="lbApp.pointOfSale.detail.title">Point Of Sale</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbApp.pointOfSale.id">Id</span></dt>
+        <dd>
+          <span>{{ pointOfSale.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pointOfSale.adressePoint">Adresse Point</span></dt>
+        <dd>
+          <span>{{ pointOfSale.adressePoint }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pointOfSale.statut">Statut</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'lbApp.StatutBanque.' + pointOfSale.statut }}">{{ pointOfSale.statut }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pointOfSale.phone1">Phone 1</span></dt>
+        <dd>
+          <span>{{ pointOfSale.phone1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pointOfSale.phone2">Phone 2</span></dt>
+        <dd>
+          <span>{{ pointOfSale.phone2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pointOfSale.pourcentagePoint">Pourcentage Point</span></dt>
+        <dd>
+          <span>{{ pointOfSale.pourcentagePoint }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pointOfSale.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ pointOfSale.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pointOfSale.createdDate">Created Date</span></dt>
+        <dd>
+          <span>{{ pointOfSale.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pointOfSale.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ pointOfSale.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pointOfSale.lastModifiedDate">Last Modified Date</span></dt>
+        <dd>
+          <span>{{ pointOfSale.lastModifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pointOfSale.pointOfSaleConf">Point Of Sale Conf</span></dt>
+        <dd>
+          <div *ngIf="pointOfSale.pointOfSaleConf">
+            <a [routerLink]="['/point-of-sale-conf-my-suffix', pointOfSale.pointOfSaleConf?.id, 'view']">{{
+              pointOfSale.pointOfSaleConf?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/point-of-sale-my-suffix', pointOfSale.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="limitConfPoint">
+      <h2 data-cy="limitConfPointDetailsHeading"><span jhiTranslate="lbApp.limitConfPoint.detail.title">Limit Conf Point</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbApp.limitConfPoint.id">Id</span></dt>
+        <dd>
+          <span>{{ limitConfPoint.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.limitConfPoint.nombreValue">Nombre Value</span></dt>
+        <dd>
+          <span>{{ limitConfPoint.nombreValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.limitConfPoint.limit">Limit</span></dt>
+        <dd>
+          <span>{{ limitConfPoint.limit }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.limitConfPoint.limitStatut">Limit Statut</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'lbApp.TypeOption.' + limitConfPoint.limitStatut }}">{{ limitConfPoint.limitStatut }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.limitConfPoint.pointOfSale">Point Of Sale</span></dt>
+        <dd>
+          <div *ngIf="limitConfPoint.pointOfSale">
+            <a [routerLink]="['/point-of-sale-my-suffix', limitConfPoint.pointOfSale?.id, 'view']">{{ limitConfPoint.pointOfSale?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/limit-conf-point-my-suffix', limitConfPoint.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

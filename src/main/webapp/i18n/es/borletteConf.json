@@ -1,0 +1,34 @@
+{
+  "lbApp": {
+    "borletteConf": {
+      "home": {
+        "title": "Borlette Confs",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Borlette Conf",
+        "createOrEditLabel": "Crear o editar Borlette Conf",
+        "notFound": "Ningún Borlette Confs encontrado"
+      },
+      "created": "Un nuevo Borlette Conf ha sido creado con el identificador {{ param }}",
+      "updated": "Un Borlette Conf ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Borlette Conf ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Borlette Conf {{ id }}?"
+      },
+      "detail": {
+        "title": "Borlette Conf"
+      },
+      "id": "Id",
+      "name": "Name",
+      "premierLot": "Premier Lot",
+      "deuxiemeLot": "Deuxieme Lot",
+      "troisiemeLot": "Troisieme Lot",
+      "mariageGratisPrix": "Mariage Gratis Prix",
+      "montantMinimum": "Montant Minimum",
+      "montantMaximum": "Montant Maximum",
+      "closeTimeMidi": "Close Time Midi",
+      "closeTimeSoir": "Close Time Soir",
+      "limitConfBorlette": "Limit Conf Borlette",
+      "tirage": "Tirage"
+    }
+  }
+}

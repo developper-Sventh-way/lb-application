@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="limitConfManager">
+      <h2 data-cy="limitConfManagerDetailsHeading"><span jhiTranslate="lbApp.limitConfManager.detail.title">Limit Conf Manager</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbApp.limitConfManager.id">Id</span></dt>
+        <dd>
+          <span>{{ limitConfManager.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.limitConfManager.nombreValue">Nombre Value</span></dt>
+        <dd>
+          <span>{{ limitConfManager.nombreValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.limitConfManager.limit">Limit</span></dt>
+        <dd>
+          <span>{{ limitConfManager.limit }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.limitConfManager.limitStatut">Limit Statut</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'lbApp.TypeOption.' + limitConfManager.limitStatut }}">{{ limitConfManager.limitStatut }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.limitConfManager.membershipConf">Membership Conf</span></dt>
+        <dd>
+          <div *ngIf="limitConfManager.membershipConf">
+            <a [routerLink]="['/membership-conf-my-suffix', limitConfManager.membershipConf?.id, 'view']">{{
+              limitConfManager.membershipConf?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/limit-conf-manager-my-suffix', limitConfManager.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

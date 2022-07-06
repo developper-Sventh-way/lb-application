@@ -1,0 +1,96 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="utilisateur">
+      <h2 data-cy="utilisateurDetailsHeading"><span jhiTranslate="lbApp.utilisateur.detail.title">Utilisateur</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbApp.utilisateur.id">Id</span></dt>
+        <dd>
+          <span>{{ utilisateur.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.utilisateur.userName">User Name</span></dt>
+        <dd>
+          <span>{{ utilisateur.userName }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.utilisateur.password">Password</span></dt>
+        <dd>
+          <span>{{ utilisateur.password }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.utilisateur.typeUser">Type User</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'lbApp.TypeUser.' + utilisateur.typeUser }}">{{ utilisateur.typeUser }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.utilisateur.nom">Nom</span></dt>
+        <dd>
+          <span>{{ utilisateur.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.utilisateur.prenom">Prenom</span></dt>
+        <dd>
+          <span>{{ utilisateur.prenom }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.utilisateur.sexe">Sexe</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'lbApp.Sexe.' + utilisateur.sexe }}">{{ utilisateur.sexe }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.utilisateur.nifOuCin">Nif Ou Cin</span></dt>
+        <dd>
+          <span>{{ utilisateur.nifOuCin }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.utilisateur.statut">Statut</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'lbApp.UserStatut.' + utilisateur.statut }}">{{ utilisateur.statut }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.utilisateur.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ utilisateur.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.utilisateur.createdDate">Created Date</span></dt>
+        <dd>
+          <span>{{ utilisateur.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.utilisateur.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ utilisateur.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.utilisateur.lastModifiedDate">Last Modified Date</span></dt>
+        <dd>
+          <span>{{ utilisateur.lastModifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.utilisateur.creditSolde">Credit Solde</span></dt>
+        <dd>
+          <div *ngIf="utilisateur.creditSolde">
+            <a [routerLink]="['/credit-solde-my-suffix', utilisateur.creditSolde?.id, 'view']">{{ utilisateur.creditSolde?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="lbApp.utilisateur.userPaymentConf">User Payment Conf</span></dt>
+        <dd>
+          <div *ngIf="utilisateur.userPaymentConf">
+            <a [routerLink]="['/user-payment-conf-my-suffix', utilisateur.userPaymentConf?.id, 'view']">{{
+              utilisateur.userPaymentConf?.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="lbApp.utilisateur.pointOfSale">Point Of Sale</span></dt>
+        <dd>
+          <div *ngIf="utilisateur.pointOfSale">
+            <a [routerLink]="['/point-of-sale-my-suffix', utilisateur.pointOfSale?.id, 'view']">{{ utilisateur.pointOfSale?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/utilisateur-my-suffix', utilisateur.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

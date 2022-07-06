@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="pOSConfiguration">
+      <h2 data-cy="pOSConfigurationDetailsHeading"><span jhiTranslate="lbApp.pOSConfiguration.detail.title">POS Configuration</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbApp.pOSConfiguration.id">Id</span></dt>
+        <dd>
+          <span>{{ pOSConfiguration.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pOSConfiguration.pOSName">P OS Name</span></dt>
+        <dd>
+          <span>{{ pOSConfiguration.pOSName }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pOSConfiguration.iMEI">I MEI</span></dt>
+        <dd>
+          <span>{{ pOSConfiguration.iMEI }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pOSConfiguration.deviceStatut">Device Statut</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'lbApp.DeviceStatut.' + pOSConfiguration.deviceStatut }}">{{ pOSConfiguration.deviceStatut }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pOSConfiguration.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ pOSConfiguration.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pOSConfiguration.createdDate">Created Date</span></dt>
+        <dd>
+          <span>{{ pOSConfiguration.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pOSConfiguration.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ pOSConfiguration.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pOSConfiguration.lastModifiedDate">Last Modified Date</span></dt>
+        <dd>
+          <span>{{ pOSConfiguration.lastModifiedDate | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/pos-configuration-my-suffix', pOSConfiguration.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

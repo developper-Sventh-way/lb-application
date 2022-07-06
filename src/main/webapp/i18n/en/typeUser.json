@@ -1,0 +1,9 @@
+{
+  "lbApp": {
+    "TypeUser": {
+      "null": "",
+      "INTERNE": "INTERNE",
+      "PARTENAIRE": "PARTENAIRE"
+    }
+  }
+}

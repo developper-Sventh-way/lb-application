@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity LimitConfManager.
+    -->
+    <changeSet id="20220706234143-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="membership_conf_id"
+                                 baseTableName="limit_conf_manager"
+                                 constraintName="fk_limit_conf_manager__membership_conf_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="membership_conf"/>
+    </changeSet>
+</databaseChangeLog>

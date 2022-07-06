@@ -1,0 +1,122 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-limit-conf-manager-my-suffix-heading"
+        data-cy="LimitConfManagerCreateUpdateHeading"
+        jhiTranslate="lbApp.limitConfManager.home.createOrEditLabel"
+      >
+        Create or edit a Limit Conf Manager
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="lbApp.limitConfManager.id" for="field_id">Id</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          <div *ngIf="editForm.get('id')!.invalid && (editForm.get('id')!.dirty || editForm.get('id')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('id')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('id')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.limitConfManager.nombreValue" for="field_nombreValue">Nombre Value</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nombreValue"
+            id="field_nombreValue"
+            data-cy="nombreValue"
+            formControlName="nombreValue"
+          />
+          <div *ngIf="editForm.get('nombreValue')!.invalid && (editForm.get('nombreValue')!.dirty || editForm.get('nombreValue')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nombreValue')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 2 }"
+            >
+              This field is required to be at least 2 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nombreValue')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 5 }"
+            >
+              This field cannot be longer than 5 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.limitConfManager.limit" for="field_limit">Limit</label>
+          <input type="number" class="form-control" name="limit" id="field_limit" data-cy="limit" formControlName="limit" />
+          <div *ngIf="editForm.get('limit')!.invalid && (editForm.get('limit')!.dirty || editForm.get('limit')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('limit')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('limit')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.limitConfManager.limitStatut" for="field_limitStatut">Limit Statut</label>
+          <select class="form-control" name="limitStatut" formControlName="limitStatut" id="field_limitStatut" data-cy="limitStatut">
+            <option [ngValue]="null">{{ 'lbApp.TypeOption.null' | translate }}</option>
+            <option *ngFor="let typeOption of typeOptionValues" [value]="typeOption">
+              {{ 'lbApp.TypeOption.' + typeOption | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.limitConfManager.membershipConf" for="field_membershipConf">Membership Conf</label>
+          <select
+            class="form-control"
+            id="field_membershipConf"
+            data-cy="membershipConf"
+            name="membershipConf"
+            formControlName="membershipConf"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                membershipConfOption.id === editForm.get('membershipConf')!.value?.id
+                  ? editForm.get('membershipConf')!.value
+                  : membershipConfOption
+              "
+              *ngFor="let membershipConfOption of membershipConfsSharedCollection; trackBy: trackMembershipConfMySuffixById"
+            >
+              {{ membershipConfOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

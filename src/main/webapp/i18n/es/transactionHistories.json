@@ -1,0 +1,30 @@
+{
+  "lbApp": {
+    "transactionHistories": {
+      "home": {
+        "title": "Transaction Histories",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Transaction Histories",
+        "createOrEditLabel": "Crear o editar Transaction Histories",
+        "notFound": "Ningún Transaction Histories encontrado"
+      },
+      "created": "Un nuevo Transaction Histories ha sido creado con el identificador {{ param }}",
+      "updated": "Un Transaction Histories ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Transaction Histories ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Transaction Histories {{ id }}?"
+      },
+      "detail": {
+        "title": "Transaction Histories"
+      },
+      "id": "Id",
+      "type": "Type",
+      "description": "Description",
+      "montant": "Montant",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date"
+    }
+  }
+}

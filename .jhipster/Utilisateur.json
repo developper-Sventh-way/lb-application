@@ -1,0 +1,147 @@
+{
+  "angularJSSuffix": "mySuffix",
+  "applications": "*",
+  "changelogDate": "20220706234200",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "utilisateur",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "userName",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength", "required"],
+      "fieldValidateRulesMaxlength": "45",
+      "fieldValidateRulesMinlength": "4"
+    },
+    {
+      "fieldName": "password",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "typeUser",
+      "fieldType": "TypeUser",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "INTERNE,PARTENAIRE"
+    },
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength", "required"],
+      "fieldValidateRulesMaxlength": "40",
+      "fieldValidateRulesMinlength": "4"
+    },
+    {
+      "fieldName": "prenom",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength", "required"],
+      "fieldValidateRulesMaxlength": "40",
+      "fieldValidateRulesMinlength": "4"
+    },
+    {
+      "fieldName": "sexe",
+      "fieldType": "Sexe",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Masculin,FEMININ"
+    },
+    {
+      "fieldName": "nifOuCin",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "20"
+    },
+    {
+      "fieldName": "statut",
+      "fieldType": "UserStatut",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "ACTIVE,BLOQUE,CLOSED"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength", "required"],
+      "fieldValidateRulesMaxlength": "45",
+      "fieldValidateRulesMinlength": "4"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "45",
+      "fieldValidateRulesMinlength": "4"
+    },
+    {
+      "fieldName": "lastModifiedDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Utilisateur",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "creditSolde",
+      "otherEntityRelationshipName": "utilisateur",
+      "ownerSide": true,
+      "relationshipName": "creditSolde",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "userPaymentConf",
+      "otherEntityRelationshipName": "utilisateur",
+      "ownerSide": true,
+      "relationshipName": "userPaymentConf",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "pointOfSaleMembership",
+      "otherEntityRelationshipName": "utilisateur",
+      "relationshipName": "pointOfSaleMembership",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "paiementBanque",
+      "otherEntityRelationshipName": "utilisateur",
+      "relationshipName": "paiementBanque",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "userSaleAccount",
+      "otherEntityRelationshipName": "utilisateur",
+      "relationshipName": "userSaleAccount",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "userRole",
+      "otherEntityRelationshipName": "utilisateur",
+      "relationshipName": "userRole",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "userPayment",
+      "otherEntityRelationshipName": "utilisateur",
+      "relationshipName": "userPayment",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "pointOfSale",
+      "otherEntityRelationshipName": "utilisateur",
+      "relationshipName": "pointOfSale",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

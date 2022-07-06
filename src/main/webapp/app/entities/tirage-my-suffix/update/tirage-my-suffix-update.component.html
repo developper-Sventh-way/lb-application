@@ -1,0 +1,331 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-tirage-my-suffix-heading" data-cy="TirageCreateUpdateHeading" jhiTranslate="lbApp.tirage.home.createOrEditLabel">
+        Create or edit a Tirage
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="lbApp.tirage.id" for="field_id">Id</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          <div *ngIf="editForm.get('id')!.invalid && (editForm.get('id')!.dirty || editForm.get('id')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('id')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('id')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.tirage.tirageName" for="field_tirageName">Tirage Name</label>
+          <select class="form-control" name="tirageName" formControlName="tirageName" id="field_tirageName" data-cy="tirageName">
+            <option [ngValue]="null">{{ 'lbApp.TirageName.null' | translate }}</option>
+            <option *ngFor="let tirageName of tirageNameValues" [value]="tirageName">
+              {{ 'lbApp.TirageName.' + tirageName | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('tirageName')!.invalid && (editForm.get('tirageName')!.dirty || editForm.get('tirageName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('tirageName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.tirage.type" for="field_type">Type</label>
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null">{{ 'lbApp.TirageType.null' | translate }}</option>
+            <option *ngFor="let tirageType of tirageTypeValues" [value]="tirageType">
+              {{ 'lbApp.TirageType.' + tirageType | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('type')!.invalid && (editForm.get('type')!.dirty || editForm.get('type')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('type')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.tirage.premierLot" for="field_premierLot">Premier Lot</label>
+          <input
+            type="text"
+            class="form-control"
+            name="premierLot"
+            id="field_premierLot"
+            data-cy="premierLot"
+            formControlName="premierLot"
+          />
+          <div *ngIf="editForm.get('premierLot')!.invalid && (editForm.get('premierLot')!.dirty || editForm.get('premierLot')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('premierLot')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 2 }"
+            >
+              This field is required to be at least 2 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('premierLot')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 2 }"
+            >
+              This field cannot be longer than 2 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.tirage.deuxiemeLot" for="field_deuxiemeLot">Deuxieme Lot</label>
+          <input
+            type="text"
+            class="form-control"
+            name="deuxiemeLot"
+            id="field_deuxiemeLot"
+            data-cy="deuxiemeLot"
+            formControlName="deuxiemeLot"
+          />
+          <div *ngIf="editForm.get('deuxiemeLot')!.invalid && (editForm.get('deuxiemeLot')!.dirty || editForm.get('deuxiemeLot')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('deuxiemeLot')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 2 }"
+            >
+              This field is required to be at least 2 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('deuxiemeLot')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 2 }"
+            >
+              This field cannot be longer than 2 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.tirage.troisiemeLot" for="field_troisiemeLot">Troisieme Lot</label>
+          <input
+            type="text"
+            class="form-control"
+            name="troisiemeLot"
+            id="field_troisiemeLot"
+            data-cy="troisiemeLot"
+            formControlName="troisiemeLot"
+          />
+          <div
+            *ngIf="editForm.get('troisiemeLot')!.invalid && (editForm.get('troisiemeLot')!.dirty || editForm.get('troisiemeLot')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('troisiemeLot')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 2 }"
+            >
+              This field is required to be at least 2 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('troisiemeLot')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 2 }"
+            >
+              This field cannot be longer than 2 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.tirage.loto3Chif" for="field_loto3Chif">Loto 3 Chif</label>
+          <input type="text" class="form-control" name="loto3Chif" id="field_loto3Chif" data-cy="loto3Chif" formControlName="loto3Chif" />
+          <div *ngIf="editForm.get('loto3Chif')!.invalid && (editForm.get('loto3Chif')!.dirty || editForm.get('loto3Chif')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('loto3Chif')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 2 }"
+            >
+              This field is required to be at least 2 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('loto3Chif')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 2 }"
+            >
+              This field cannot be longer than 2 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.tirage.statut" for="field_statut">Statut</label>
+          <select class="form-control" name="statut" formControlName="statut" id="field_statut" data-cy="statut">
+            <option [ngValue]="null">{{ 'lbApp.UserStatut.null' | translate }}</option>
+            <option *ngFor="let userStatut of userStatutValues" [value]="userStatut">
+              {{ 'lbApp.UserStatut.' + userStatut | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('statut')!.invalid && (editForm.get('statut')!.dirty || editForm.get('statut')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('statut')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.tirage.createdBy" for="field_createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+          <div *ngIf="editForm.get('createdBy')!.invalid && (editForm.get('createdBy')!.dirty || editForm.get('createdBy')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('createdBy')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('createdBy')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 4 }"
+            >
+              This field is required to be at least 4 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('createdBy')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 45 }"
+            >
+              This field cannot be longer than 45 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.tirage.createdDate" for="field_createdDate">Created Date</label>
+          <div class="d-flex">
+            <input
+              id="field_createdDate"
+              data-cy="createdDate"
+              type="datetime-local"
+              class="form-control"
+              name="createdDate"
+              formControlName="createdDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('createdDate')!.invalid && (editForm.get('createdDate')!.dirty || editForm.get('createdDate')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('createdDate')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('createdDate')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.tirage.lastModifiedBy" for="field_lastModifiedBy">Last Modified By</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lastModifiedBy"
+            id="field_lastModifiedBy"
+            data-cy="lastModifiedBy"
+            formControlName="lastModifiedBy"
+          />
+          <div
+            *ngIf="
+              editForm.get('lastModifiedBy')!.invalid && (editForm.get('lastModifiedBy')!.dirty || editForm.get('lastModifiedBy')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('lastModifiedBy')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 4 }"
+            >
+              This field is required to be at least 4 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('lastModifiedBy')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 45 }"
+            >
+              This field cannot be longer than 45 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.tirage.lastModifiedDate" for="field_lastModifiedDate">Last Modified Date</label>
+          <div class="d-flex">
+            <input
+              id="field_lastModifiedDate"
+              data-cy="lastModifiedDate"
+              type="datetime-local"
+              class="form-control"
+              name="lastModifiedDate"
+              formControlName="lastModifiedDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.tirage.borletteConf" for="field_borletteConf">Borlette Conf</label>
+          <select class="form-control" id="field_borletteConf" data-cy="borletteConf" name="borletteConf" formControlName="borletteConf">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                borletteConfOption.id === editForm.get('borletteConf')!.value?.id ? editForm.get('borletteConf')!.value : borletteConfOption
+              "
+              *ngFor="let borletteConfOption of borletteConfsSharedCollection; trackBy: trackBorletteConfMySuffixById"
+            >
+              {{ borletteConfOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

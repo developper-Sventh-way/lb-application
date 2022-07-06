@@ -1,0 +1,12 @@
+{
+  "lbApp": {
+    "UserRoleName": {
+      "null": "",
+      "CASHIER": "CASHIER",
+      "RESPONSABLE_POINT": "RESPONSABLE_POINT",
+      "RESPONSABLE_PARTENAIRE": "RESPONSABLE_PARTENAIRE",
+      "ADMIN_PARTENAIRE": "ADMIN_PARTENAIRE",
+      "ADMIN": "ADMIN"
+    }
+  }
+}

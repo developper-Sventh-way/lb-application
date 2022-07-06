@@ -1,0 +1,138 @@
+<div>
+  <h2 id="page-heading" data-cy="TicketOptionHeading">
+    <span jhiTranslate="lbApp.ticketOption.home.title">Ticket Options</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="lbApp.ticketOption.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-ticket-option-my-suffix"
+        [routerLink]="['/ticket-option-my-suffix/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="lbApp.ticketOption.home.createLabel"> Create a new Ticket Option </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="ticketOptions?.length === 0">
+    <span jhiTranslate="lbApp.ticketOption.home.notFound">No ticketOptions found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="ticketOptions && ticketOptions.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="lbApp.ticketOption.id">Id</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="contenu">
+            <span jhiTranslate="lbApp.ticketOption.contenu">Contenu</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="playAmount">
+            <span jhiTranslate="lbApp.ticketOption.playAmount">Play Amount</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="typeOption">
+            <span jhiTranslate="lbApp.ticketOption.typeOption">Type Option</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="statutOption">
+            <span jhiTranslate="lbApp.ticketOption.statutOption">Statut Option</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="multiplicateur">
+            <span jhiTranslate="lbApp.ticketOption.multiplicateur">Multiplicateur</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="lbApp.ticketOption.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdDate">
+            <span jhiTranslate="lbApp.ticketOption.createdDate">Created Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="lbApp.ticketOption.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedDate">
+            <span jhiTranslate="lbApp.ticketOption.lastModifiedDate">Last Modified Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="ticket.id">
+            <span jhiTranslate="lbApp.ticketOption.ticket">Ticket</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ticketOption of ticketOptions; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/ticket-option-my-suffix', ticketOption.id, 'view']">{{ ticketOption.id }}</a>
+          </td>
+          <td>{{ ticketOption.contenu }}</td>
+          <td>{{ ticketOption.playAmount }}</td>
+          <td jhiTranslate="{{ 'lbApp.TypeOption.' + ticketOption.typeOption }}">{{ ticketOption.typeOption }}</td>
+          <td jhiTranslate="{{ 'lbApp.StatutFiche.' + ticketOption.statutOption }}">{{ ticketOption.statutOption }}</td>
+          <td>{{ ticketOption.multiplicateur }}</td>
+          <td>{{ ticketOption.createdBy }}</td>
+          <td>{{ ticketOption.createdDate | formatMediumDatetime }}</td>
+          <td>{{ ticketOption.lastModifiedBy }}</td>
+          <td>{{ ticketOption.lastModifiedDate | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="ticketOption.ticket">
+              <a [routerLink]="['/ticket-my-suffix', ticketOption.ticket?.id, 'view']">{{ ticketOption.ticket?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/ticket-option-my-suffix', ticketOption.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/ticket-option-my-suffix', ticketOption.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(ticketOption)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="ticketOptions && ticketOptions.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

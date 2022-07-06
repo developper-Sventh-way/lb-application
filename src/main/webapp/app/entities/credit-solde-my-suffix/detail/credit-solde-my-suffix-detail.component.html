@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="creditSolde">
+      <h2 data-cy="creditSoldeDetailsHeading"><span jhiTranslate="lbApp.creditSolde.detail.title">Credit Solde</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbApp.creditSolde.id">Id</span></dt>
+        <dd>
+          <span>{{ creditSolde.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.creditSolde.montant">Montant</span></dt>
+        <dd>
+          <span>{{ creditSolde.montant }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.creditSolde.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ creditSolde.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.creditSolde.createdDate">Created Date</span></dt>
+        <dd>
+          <span>{{ creditSolde.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.creditSolde.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ creditSolde.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.creditSolde.lastModifiedDate">Last Modified Date</span></dt>
+        <dd>
+          <span>{{ creditSolde.lastModifiedDate | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/credit-solde-my-suffix', creditSolde.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

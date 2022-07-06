@@ -1,0 +1,35 @@
+{
+  "lbApp": {
+    "membershipConf": {
+      "home": {
+        "title": "Membership Confs",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Membership Conf",
+        "createOrEditLabel": "Crear o editar Membership Conf",
+        "notFound": "Ningún Membership Confs encontrado"
+      },
+      "created": "Un nuevo Membership Conf ha sido creado con el identificador {{ param }}",
+      "updated": "Un Membership Conf ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Membership Conf ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Membership Conf {{ id }}?"
+      },
+      "detail": {
+        "title": "Membership Conf"
+      },
+      "id": "Id",
+      "nomClient": "Nom Client",
+      "slogan": "Slogan",
+      "telephones": "Telephones",
+      "adresse": "Adresse",
+      "infos": "Infos",
+      "logoLink": "Logo Link",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date",
+      "pointOfSaleMembership": "Point Of Sale Membership",
+      "limitConfManager": "Limit Conf Manager"
+    }
+  }
+}

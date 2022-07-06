@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="paiementBanque">
+      <h2 data-cy="paiementBanqueDetailsHeading"><span jhiTranslate="lbApp.paiementBanque.detail.title">Paiement Banque</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbApp.paiementBanque.id">Id</span></dt>
+        <dd>
+          <span>{{ paiementBanque.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.paiementBanque.montant">Montant</span></dt>
+        <dd>
+          <span>{{ paiementBanque.montant }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.paiementBanque.balance">Balance</span></dt>
+        <dd>
+          <span>{{ paiementBanque.balance }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.paiementBanque.description">Description</span></dt>
+        <dd>
+          <span>{{ paiementBanque.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.paiementBanque.startDate">Start Date</span></dt>
+        <dd>
+          <span>{{ paiementBanque.startDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.paiementBanque.endDate">End Date</span></dt>
+        <dd>
+          <span>{{ paiementBanque.endDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.paiementBanque.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ paiementBanque.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.paiementBanque.createdDate">Created Date</span></dt>
+        <dd>
+          <span>{{ paiementBanque.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.paiementBanque.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ paiementBanque.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.paiementBanque.lastModifiedDate">Last Modified Date</span></dt>
+        <dd>
+          <span>{{ paiementBanque.lastModifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.paiementBanque.pointOfSale">Point Of Sale</span></dt>
+        <dd>
+          <div *ngIf="paiementBanque.pointOfSale">
+            <a [routerLink]="['/point-of-sale-my-suffix', paiementBanque.pointOfSale?.id, 'view']">{{ paiementBanque.pointOfSale?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="lbApp.paiementBanque.utilisateur">Utilisateur</span></dt>
+        <dd>
+          <div *ngIf="paiementBanque.utilisateur">
+            <a [routerLink]="['/utilisateur-my-suffix', paiementBanque.utilisateur?.id, 'view']">{{ paiementBanque.utilisateur?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/paiement-banque-my-suffix', paiementBanque.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

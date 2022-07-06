@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="systemTrace">
+      <h2 data-cy="systemTraceDetailsHeading"><span jhiTranslate="lbApp.systemTrace.detail.title">System Trace</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbApp.systemTrace.id">Id</span></dt>
+        <dd>
+          <span>{{ systemTrace.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.systemTrace.traceContenu">Trace Contenu</span></dt>
+        <dd>
+          <span>{{ systemTrace.traceContenu }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.systemTrace.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ systemTrace.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.systemTrace.createdDate">Created Date</span></dt>
+        <dd>
+          <span>{{ systemTrace.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.systemTrace.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ systemTrace.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.systemTrace.lastModifiedDate">Last Modified Date</span></dt>
+        <dd>
+          <span>{{ systemTrace.lastModifiedDate | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/system-trace-my-suffix', systemTrace.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

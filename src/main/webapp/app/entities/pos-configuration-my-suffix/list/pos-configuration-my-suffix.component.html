@@ -1,0 +1,122 @@
+<div>
+  <h2 id="page-heading" data-cy="POSConfigurationHeading">
+    <span jhiTranslate="lbApp.pOSConfiguration.home.title">POS Configurations</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="lbApp.pOSConfiguration.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-pos-configuration-my-suffix"
+        [routerLink]="['/pos-configuration-my-suffix/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="lbApp.pOSConfiguration.home.createLabel"> Create a new POS Configuration </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="pOSConfigurations?.length === 0">
+    <span jhiTranslate="lbApp.pOSConfiguration.home.notFound">No pOSConfigurations found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="pOSConfigurations && pOSConfigurations.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="lbApp.pOSConfiguration.id">Id</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="pOSName">
+            <span jhiTranslate="lbApp.pOSConfiguration.pOSName">P OS Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="iMEI">
+            <span jhiTranslate="lbApp.pOSConfiguration.iMEI">I MEI</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="deviceStatut">
+            <span jhiTranslate="lbApp.pOSConfiguration.deviceStatut">Device Statut</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="lbApp.pOSConfiguration.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdDate">
+            <span jhiTranslate="lbApp.pOSConfiguration.createdDate">Created Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="lbApp.pOSConfiguration.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedDate">
+            <span jhiTranslate="lbApp.pOSConfiguration.lastModifiedDate">Last Modified Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pOSConfiguration of pOSConfigurations; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/pos-configuration-my-suffix', pOSConfiguration.id, 'view']">{{ pOSConfiguration.id }}</a>
+          </td>
+          <td>{{ pOSConfiguration.pOSName }}</td>
+          <td>{{ pOSConfiguration.iMEI }}</td>
+          <td jhiTranslate="{{ 'lbApp.DeviceStatut.' + pOSConfiguration.deviceStatut }}">{{ pOSConfiguration.deviceStatut }}</td>
+          <td>{{ pOSConfiguration.createdBy }}</td>
+          <td>{{ pOSConfiguration.createdDate | formatMediumDatetime }}</td>
+          <td>{{ pOSConfiguration.lastModifiedBy }}</td>
+          <td>{{ pOSConfiguration.lastModifiedDate | formatMediumDatetime }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/pos-configuration-my-suffix', pOSConfiguration.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/pos-configuration-my-suffix', pOSConfiguration.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(pOSConfiguration)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="pOSConfigurations && pOSConfigurations.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

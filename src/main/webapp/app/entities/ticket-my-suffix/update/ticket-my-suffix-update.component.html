@@ -1,0 +1,341 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-ticket-my-suffix-heading" data-cy="TicketCreateUpdateHeading" jhiTranslate="lbApp.ticket.home.createOrEditLabel">
+        Create or edit a Ticket
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="lbApp.ticket.id" for="field_id">Id</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          <div *ngIf="editForm.get('id')!.invalid && (editForm.get('id')!.dirty || editForm.get('id')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('id')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('id')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.ticket.ticketNo" for="field_ticketNo">Ticket No</label>
+          <input type="text" class="form-control" name="ticketNo" id="field_ticketNo" data-cy="ticketNo" formControlName="ticketNo" />
+          <div *ngIf="editForm.get('ticketNo')!.invalid && (editForm.get('ticketNo')!.dirty || editForm.get('ticketNo')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('ticketNo')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 18 }"
+            >
+              This field is required to be at least 18 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('ticketNo')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 18 }"
+            >
+              This field cannot be longer than 18 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.ticket.statutFiche" for="field_statutFiche">Statut Fiche</label>
+          <select class="form-control" name="statutFiche" formControlName="statutFiche" id="field_statutFiche" data-cy="statutFiche">
+            <option [ngValue]="null">{{ 'lbApp.StatutFiche.null' | translate }}</option>
+            <option *ngFor="let statutFiche of statutFicheValues" [value]="statutFiche">
+              {{ 'lbApp.StatutFiche.' + statutFiche | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('statutFiche')!.invalid && (editForm.get('statutFiche')!.dirty || editForm.get('statutFiche')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('statutFiche')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.ticket.closeBy" for="field_closeBy">Close By</label>
+          <input type="text" class="form-control" name="closeBy" id="field_closeBy" data-cy="closeBy" formControlName="closeBy" />
+          <div *ngIf="editForm.get('closeBy')!.invalid && (editForm.get('closeBy')!.dirty || editForm.get('closeBy')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('closeBy')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 4 }"
+            >
+              This field is required to be at least 4 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('closeBy')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 45 }"
+            >
+              This field cannot be longer than 45 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.ticket.closeDate" for="field_closeDate">Close Date</label>
+          <div class="d-flex">
+            <input
+              id="field_closeDate"
+              data-cy="closeDate"
+              type="datetime-local"
+              class="form-control"
+              name="closeDate"
+              formControlName="closeDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.ticket.isClosed" for="field_isClosed">Is Closed</label>
+          <input type="checkbox" class="form-check" name="isClosed" id="field_isClosed" data-cy="isClosed" formControlName="isClosed" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.ticket.closeById" for="field_closeById">Close By Id</label>
+          <input type="number" class="form-control" name="closeById" id="field_closeById" data-cy="closeById" formControlName="closeById" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.ticket.payBy" for="field_payBy">Pay By</label>
+          <input type="text" class="form-control" name="payBy" id="field_payBy" data-cy="payBy" formControlName="payBy" />
+          <div *ngIf="editForm.get('payBy')!.invalid && (editForm.get('payBy')!.dirty || editForm.get('payBy')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('payBy')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 4 }"
+            >
+              This field is required to be at least 4 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('payBy')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 45 }"
+            >
+              This field cannot be longer than 45 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.ticket.payDate" for="field_payDate">Pay Date</label>
+          <div class="d-flex">
+            <input
+              id="field_payDate"
+              data-cy="payDate"
+              type="datetime-local"
+              class="form-control"
+              name="payDate"
+              formControlName="payDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.ticket.isPay" for="field_isPay">Is Pay</label>
+          <input type="checkbox" class="form-check" name="isPay" id="field_isPay" data-cy="isPay" formControlName="isPay" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.ticket.payById" for="field_payById">Pay By Id</label>
+          <input type="number" class="form-control" name="payById" id="field_payById" data-cy="payById" formControlName="payById" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.ticket.createdBy" for="field_createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+          <div *ngIf="editForm.get('createdBy')!.invalid && (editForm.get('createdBy')!.dirty || editForm.get('createdBy')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('createdBy')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('createdBy')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 4 }"
+            >
+              This field is required to be at least 4 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('createdBy')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 45 }"
+            >
+              This field cannot be longer than 45 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.ticket.createdDate" for="field_createdDate">Created Date</label>
+          <div class="d-flex">
+            <input
+              id="field_createdDate"
+              data-cy="createdDate"
+              type="datetime-local"
+              class="form-control"
+              name="createdDate"
+              formControlName="createdDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('createdDate')!.invalid && (editForm.get('createdDate')!.dirty || editForm.get('createdDate')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('createdDate')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('createdDate')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.ticket.lastModifiedBy" for="field_lastModifiedBy">Last Modified By</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lastModifiedBy"
+            id="field_lastModifiedBy"
+            data-cy="lastModifiedBy"
+            formControlName="lastModifiedBy"
+          />
+          <div
+            *ngIf="
+              editForm.get('lastModifiedBy')!.invalid && (editForm.get('lastModifiedBy')!.dirty || editForm.get('lastModifiedBy')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('lastModifiedBy')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 4 }"
+            >
+              This field is required to be at least 4 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('lastModifiedBy')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 45 }"
+            >
+              This field cannot be longer than 45 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.ticket.lastModifiedDate" for="field_lastModifiedDate">Last Modified Date</label>
+          <div class="d-flex">
+            <input
+              id="field_lastModifiedDate"
+              data-cy="lastModifiedDate"
+              type="datetime-local"
+              class="form-control"
+              name="lastModifiedDate"
+              formControlName="lastModifiedDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.ticket.pointOfSale" for="field_pointOfSale">Point Of Sale</label>
+          <select class="form-control" id="field_pointOfSale" data-cy="pointOfSale" name="pointOfSale" formControlName="pointOfSale">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                pointOfSaleOption.id === editForm.get('pointOfSale')!.value?.id ? editForm.get('pointOfSale')!.value : pointOfSaleOption
+              "
+              *ngFor="let pointOfSaleOption of pointOfSalesSharedCollection; trackBy: trackPointOfSaleMySuffixById"
+            >
+              {{ pointOfSaleOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.ticket.tirage" for="field_tirage">Tirage</label>
+          <select class="form-control" id="field_tirage" data-cy="tirage" name="tirage" formControlName="tirage">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="tirageOption.id === editForm.get('tirage')!.value?.id ? editForm.get('tirage')!.value : tirageOption"
+              *ngFor="let tirageOption of tiragesSharedCollection; trackBy: trackTirageMySuffixById"
+            >
+              {{ tirageOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.ticket.userSaleAccount" for="field_userSaleAccount">User Sale Account</label>
+          <select
+            class="form-control"
+            id="field_userSaleAccount"
+            data-cy="userSaleAccount"
+            name="userSaleAccount"
+            formControlName="userSaleAccount"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                userSaleAccountOption.id === editForm.get('userSaleAccount')!.value?.id
+                  ? editForm.get('userSaleAccount')!.value
+                  : userSaleAccountOption
+              "
+              *ngFor="let userSaleAccountOption of userSaleAccountsSharedCollection; trackBy: trackUserSaleAccountMySuffixById"
+            >
+              {{ userSaleAccountOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+{
+  "lbApp": {
+    "ticket": {
+      "home": {
+        "title": "Tickets",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Ticket",
+        "createOrEditLabel": "Créer ou éditer un Ticket",
+        "notFound": "Aucun Ticket trouvé"
+      },
+      "created": "Un nouveau Ticket a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Ticket avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Ticket avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Ticket {{ id }} ?"
+      },
+      "detail": {
+        "title": "Ticket"
+      },
+      "id": "Id",
+      "ticketNo": "Ticket No",
+      "statutFiche": "Statut Fiche",
+      "closeBy": "Close By",
+      "closeDate": "Close Date",
+      "isClosed": "Is Closed",
+      "closeById": "Close By Id",
+      "payBy": "Pay By",
+      "payDate": "Pay Date",
+      "isPay": "Is Pay",
+      "payById": "Pay By Id",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date",
+      "ticketOption": "Ticket Option",
+      "pointOfSale": "Point Of Sale",
+      "tirage": "Tirage",
+      "userSaleAccount": "User Sale Account"
+    }
+  }
+}

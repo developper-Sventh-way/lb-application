@@ -1,0 +1,121 @@
+{
+  "angularJSSuffix": "mySuffix",
+  "applications": "*",
+  "changelogDate": "20220706234152",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "ticket",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "ticketNo",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "18",
+      "fieldValidateRulesMinlength": "18"
+    },
+    {
+      "fieldName": "statutFiche",
+      "fieldType": "StatutFiche",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "ACTIVE,ANNULED,WIN,LOSE"
+    },
+    {
+      "fieldName": "closeBy",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "45",
+      "fieldValidateRulesMinlength": "4"
+    },
+    {
+      "fieldName": "closeDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "isClosed",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "closeById",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "payBy",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "45",
+      "fieldValidateRulesMinlength": "4"
+    },
+    {
+      "fieldName": "payDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "isPay",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "payById",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength", "required"],
+      "fieldValidateRulesMaxlength": "45",
+      "fieldValidateRulesMinlength": "4"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "45",
+      "fieldValidateRulesMinlength": "4"
+    },
+    {
+      "fieldName": "lastModifiedDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Ticket",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "ticketOption",
+      "otherEntityRelationshipName": "ticket",
+      "relationshipName": "ticketOption",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "pointOfSale",
+      "otherEntityRelationshipName": "ticket",
+      "relationshipName": "pointOfSale",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "tirage",
+      "otherEntityRelationshipName": "ticket",
+      "relationshipName": "tirage",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "userSaleAccount",
+      "otherEntityRelationshipName": "ticket",
+      "relationshipName": "userSaleAccount",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

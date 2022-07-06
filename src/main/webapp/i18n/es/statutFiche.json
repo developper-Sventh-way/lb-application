@@ -1,0 +1,11 @@
+{
+  "lbApp": {
+    "StatutFiche": {
+      "null": "",
+      "ACTIVE": "ACTIVE",
+      "ANNULED": "ANNULED",
+      "WIN": "WIN",
+      "LOSE": "LOSE"
+    }
+  }
+}
