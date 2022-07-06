@@ -1,0 +1,445 @@
+// liste des enums
+enum DeviceStatut {
+	ACTIVE, BLOQUER
+}
+
+enum LimitStatut {
+	SIMPLE, MARIAGE, LOTO3CHIF, LOTO4CHIF, 
+    LOTO5CHIF, LOTO4CHIFOPTION1, LOTO4CHIFOPTION2, LOTO4CHIFOPTION3,
+    LOTO5CHIFOPTION1, LOTO5CHIFOPTION2, LOTO5CHIFOPTION3
+}
+
+
+enum Sexe {
+    Masculin, FEMININ
+}
+
+enum StatutBanque {
+    OPEN, CLOSE
+}
+
+enum StatutFiche {
+    ACTIVE, ANNULED, WIN, LOSE
+}
+
+enum TirageName {
+    NEWYORK, FLORIDA, GEORGIA
+}
+
+enum TirageType {
+    MIDI, SOIR
+}
+
+enum TransactionType {
+    DEPOT, RETRAIT, VIREMENT
+}
+
+enum TypeBanque {
+    INTERNE, PARTENARIAT
+}
+
+enum TypeOption {
+    MARIAGE,
+    LOTO3CHIF, LOTO4CHIF,
+    LOTO5CHIF,
+    PREMIERLOT, DEUXIEMELOT, TROISIEMELOT,
+    ALEATOIRE, LOTO4CHIFOPTION1, LOTO4CHIFOPTION2,
+    LOTO4CHIFOPTION3, LOTO5CHIFOPTION1, LOTO5CHIFOPTION2,
+    LOTO5CHIFOPTION3
+}
+
+enum TypePoint {
+    NORMAL, PARTENARIAT
+}
+
+enum TypeUser {
+    INTERNE, PARTENAIRE
+}
+
+enum TypeUserBanque {
+    CASHIER, COMPTABLE
+}
+
+enum UserPaymentType {
+    FIX, POURCENTAGE
+}
+
+enum UserRoleName {
+    CASHIER, RESPONSABLE_POINT, RESPONSABLE_PARTENAIRE, ADMIN_PARTENAIRE, ADMIN
+}
+
+enum UserSaleAccountStatut {
+    ACTIVE, CLOSED
+}
+
+enum UserStatut {
+    ACTIVE, BLOQUE, CLOSED
+}
+
+
+
+// les entites
+entity BorletteConf{
+	id Long required
+    name TirageName required
+    premierLot Integer required
+    deuxiemeLot Integer required
+    troisiemeLot Integer required
+    mariageGratisPrix BigDecimal
+    montantMinimum Long required
+    montantMaximum Long required
+    closeTimeMidi String required minlength(5) maxlength(5)
+    closeTimeSoir String required minlength(5) maxlength(5)
+  
+}
+
+
+
+entity CouponGratuitConf {
+	id Long required
+    typeOption TypeOption required
+    maximumCount Long required
+    obstinateAmount BigDecimal required
+    statut UserStatut required
+    createdBy String minlength(4) maxlength(45)
+    createdDate Instant required
+    lastModifiedBy String minlength(4) maxlength(45)
+    lastModifiedDate Instant
+}
+
+entity CreditSolde {
+	id Long required
+    montant BigDecimal required
+    createdBy String minlength(4) maxlength(45)
+    createdDate Instant required
+    lastModifiedBy String minlength(4) maxlength(45)
+    lastModifiedDate Instant
+}
+
+entity  LimitConfBorlette {
+	id Long required
+    nombreValue String minlength(2) maxlength(5)
+    limit Long required
+    limitStatut TypeOption
+    createdBy String minlength(4) maxlength(45)
+    createdDate Instant
+    lastModifiedBy String minlength(4) maxlength(45)
+    lastModifiedDate Instant
+}
+
+entity  LimitConfManager {
+	id Long required
+    nombreValue String minlength(2) maxlength(5)
+    limit Long required
+    limitStatut TypeOption
+}
+
+entity  LimitConfPoint {
+	id Long required
+    nombreValue String minlength(2) maxlength(5)
+    limit Long required
+    limitStatut TypeOption
+}
+
+entity PaiementBanque {
+	id Long required
+    montant BigDecimal required
+    balance BigDecimal required
+    description String maxlength(120)
+    startDate LocalDate
+    endDate LocalDate
+    createdBy String minlength(4) maxlength(45)
+    createdDate Instant  required
+    lastModifiedBy String minlength(4) maxlength(45)
+    lastModifiedDate Instant
+    
+}
+
+entity PointOfSale{
+	id Long required
+    adressePoint String minlength(4) maxlength(80)
+    statut StatutBanque required
+    phone1 String minlength(6) maxlength(30)
+    phone2 String minlength(6) maxlength(30)
+    pourcentagePoint Integer required
+    createdBy String minlength(4) maxlength(45) required
+    createdDate Instant required
+    lastModifiedBy String minlength(4) maxlength(45)
+    lastModifiedDate Instant
+    
+}
+
+entity PointOfSaleConf {
+	id Long required
+    pourcentageCaissier Integer
+    pourcentageResponsable Integer
+    startTime String minlength(5) maxlength(5)
+    endTime String minlength(5) maxlength(5)
+    createdBy String minlength(4) maxlength(45) required
+    createdDate Instant required
+    lastModifiedBy String minlength(4) maxlength(45)
+    lastModifiedDate Instant
+}
+
+entity PointOfSaleMembership {
+	id Long required
+    typePoint TypeBanque required
+    createdBy String minlength(4) maxlength(45) required
+    createdDate Instant required
+    lastModifiedBy String minlength(4) maxlength(45)
+    lastModifiedDate Instant
+}
+
+entity MembershipConf {
+	id Long required
+    nomClient String minlength(4) maxlength(100)
+    slogan String maxlength(60)
+    telephones String maxlength(60)
+    adresse String maxlength(60)
+    infos String maxlength(120)
+    logoLink String
+    createdBy String minlength(4) maxlength(45) required
+    createdDate Instant required
+    lastModifiedBy String minlength(4) maxlength(45)
+    lastModifiedDate Instant
+}
+
+entity POSConfiguration{
+	id Long required
+    POSName String maxlength(50) required
+    IMEI String minlength(4) maxlength(60) required
+    deviceStatut DeviceStatut required
+    createdBy String minlength(4) maxlength(45) required
+    createdDate Instant required
+    lastModifiedBy String minlength(4) maxlength(45)
+    lastModifiedDate Instant
+}
+
+entity SystemTrace {
+	id Long required
+    traceContenu String maxlength(100) required
+    createdBy String minlength(4) maxlength(45) required
+    createdDate Instant required
+    lastModifiedBy String minlength(4) maxlength(45)
+    lastModifiedDate Instant
+}
+
+entity Ticket {
+	id Long required
+    ticketNo String minlength(18) maxlength(18)
+    statutFiche StatutFiche required
+    closeBy String minlength(4) maxlength(45)
+    closeDate Instant
+    isClosed Boolean
+    closeById Long
+    payBy String minlength(4) maxlength(45)
+    payDate Instant
+    isPay Boolean
+    payById Long
+    createdBy String minlength(4) maxlength(45) required
+    createdDate Instant required
+    lastModifiedBy String minlength(4) maxlength(45)
+    lastModifiedDate Instant
+}
+
+entity TicketOption {
+	id Long required
+    contenu String minlength(2) maxlength(7)
+    playAmount BigDecimal required
+    typeOption TypeOption required
+    statutOption StatutFiche required
+    multiplicateur Integer required
+    createdBy String minlength(4) maxlength(45) required
+    createdDate Instant required
+    lastModifiedBy String minlength(4) maxlength(45)
+    lastModifiedDate Instant
+}
+
+entity Tirage {
+	id Long required
+    tirageName TirageName required
+    type TirageType required
+    premierLot String minlength(2) maxlength(2)
+    deuxiemeLot String minlength(2) maxlength(2)
+    troisiemeLot String minlength(2) maxlength(2)
+    loto3Chif String minlength(2) maxlength(2)
+    statut UserStatut required
+    createdBy String minlength(4) maxlength(45) required
+    createdDate Instant required
+    lastModifiedBy String minlength(4) maxlength(45)
+    lastModifiedDate Instant
+    
+}
+
+entity TransactionHistories {
+	id Long required
+    type TransactionType required
+    description String maxlength(60)
+    montant BigDecimal required
+    createdBy String minlength(4) maxlength(45) required
+    createdDate Instant required
+    lastModifiedBy String minlength(4) maxlength(45)
+    lastModifiedDate Instant
+}
+
+entity UserPayment {
+	id Long required
+    payAmount BigDecimal required
+    balance BigDecimal required
+    startDate LocalDate
+    endDate LocalDate
+    createdBy String minlength(4) maxlength(45) required
+    createdDate Instant required
+    lastModifiedBy String minlength(4) maxlength(45)
+    lastModifiedDate Instant
+}
+
+entity UserPaymentConf {
+	id Long required
+    type UserPaymentType required
+    total BigDecimal required
+    createdBy String minlength(4) maxlength(45) required
+    createdDate Instant required
+    lastModifiedBy String minlength(4) maxlength(45)
+    lastModifiedDate Instant
+}
+
+entity UserRole {
+	id Long required
+    role UserRoleName required
+    description String maxlength(60)
+    exceptions String maxlength(60)
+    createdBy String minlength(4) maxlength(45) required
+    createdDate Instant required
+    lastModifiedBy String minlength(4) maxlength(45)
+    lastModifiedDate Instant
+}
+
+entity UserSaleAccount {
+	id Long required
+    balance BigDecimal required
+    lastPayment BigDecimal required
+    statut UserSaleAccountStatut
+    startDate Instant required
+    endDate Instant required
+    createdBy String minlength(4) maxlength(45) required
+    createdDate Instant required
+    lastModifiedBy String minlength(4) maxlength(45)
+    lastModifiedDate Instant
+}
+
+entity Utilisateur {
+	id Long required
+    userName String minlength(4) maxlength(45) required
+    password String maxlength(100) required
+    typeUser TypeUser required
+    nom String minlength(4) maxlength(40) required
+    prenom String minlength(4) maxlength(40) required
+    sexe Sexe required
+    nifOuCin String maxlength(20)
+    statut UserStatut required
+    createdBy String minlength(4) maxlength(45) required
+    createdDate Instant required
+    lastModifiedBy String minlength(4) maxlength(45)
+    lastModifiedDate Instant
+}
+
+// cle primaire et cle etrangere
+relationship OneToMany {
+	BorletteConf to LimitConfBorlette
+}
+
+relationship OneToMany {
+	BorletteConf to Tirage
+}
+
+relationship OneToOne {
+	Utilisateur to CreditSolde
+}
+
+relationship OneToMany {
+	PointOfSale to LimitConfPoint
+}
+
+relationship OneToMany {
+	PointOfSale to Utilisateur
+}
+
+relationship OneToMany {
+	PointOfSale to PaiementBanque
+}
+
+relationship OneToMany {
+	PointOfSale to Ticket
+}
+
+relationship OneToOne {
+	PointOfSale to PointOfSaleConf
+}
+
+relationship OneToMany {
+	MembershipConf to PointOfSaleMembership
+}
+
+relationship OneToMany {
+	MembershipConf to LimitConfManager
+}
+
+relationship OneToMany {
+	Ticket to TicketOption
+}
+
+relationship OneToMany {
+	Tirage to Ticket
+}
+
+relationship OneToMany {
+	UserSaleAccount to Ticket
+}
+
+relationship OneToMany {
+	Utilisateur to PointOfSaleMembership
+}
+
+relationship OneToMany {
+	Utilisateur to PaiementBanque
+}
+
+relationship OneToMany {
+	Utilisateur to UserSaleAccount
+}
+
+relationship OneToMany {
+	Utilisateur to UserRole
+}
+
+relationship OneToMany {
+	Utilisateur to UserPayment
+}
+
+relationship OneToOne {
+	Utilisateur to CreditSolde
+}
+
+relationship OneToOne {
+	Utilisateur to UserPaymentConf
+}
+
+
+
+
+// Set pagination options
+paginate all with pagination
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+angularSuffix * with mySuffix
+
+
+
+    
