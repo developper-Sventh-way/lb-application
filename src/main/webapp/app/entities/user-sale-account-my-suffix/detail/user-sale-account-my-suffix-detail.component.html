@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="userSaleAccount">
+      <h2 data-cy="userSaleAccountDetailsHeading"><span jhiTranslate="lbApp.userSaleAccount.detail.title">User Sale Account</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbApp.userSaleAccount.id">Id</span></dt>
+        <dd>
+          <span>{{ userSaleAccount.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userSaleAccount.balance">Balance</span></dt>
+        <dd>
+          <span>{{ userSaleAccount.balance }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userSaleAccount.lastPayment">Last Payment</span></dt>
+        <dd>
+          <span>{{ userSaleAccount.lastPayment }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userSaleAccount.statut">Statut</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'lbApp.UserSaleAccountStatut.' + userSaleAccount.statut }}">{{ userSaleAccount.statut }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userSaleAccount.startDate">Start Date</span></dt>
+        <dd>
+          <span>{{ userSaleAccount.startDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userSaleAccount.endDate">End Date</span></dt>
+        <dd>
+          <span>{{ userSaleAccount.endDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userSaleAccount.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ userSaleAccount.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userSaleAccount.createdDate">Created Date</span></dt>
+        <dd>
+          <span>{{ userSaleAccount.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userSaleAccount.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ userSaleAccount.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userSaleAccount.lastModifiedDate">Last Modified Date</span></dt>
+        <dd>
+          <span>{{ userSaleAccount.lastModifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userSaleAccount.utilisateur">Utilisateur</span></dt>
+        <dd>
+          <div *ngIf="userSaleAccount.utilisateur">
+            <a [routerLink]="['/utilisateur-my-suffix', userSaleAccount.utilisateur?.id, 'view']">{{ userSaleAccount.utilisateur?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/user-sale-account-my-suffix', userSaleAccount.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

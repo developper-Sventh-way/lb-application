@@ -1,0 +1,9 @@
+{
+  "lbApp": {
+    "TirageType": {
+      "null": "",
+      "MIDI": "MIDI",
+      "SOIR": "SOIR"
+    }
+  }
+}

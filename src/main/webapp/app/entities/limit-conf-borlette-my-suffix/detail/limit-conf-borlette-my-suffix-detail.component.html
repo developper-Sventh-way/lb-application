@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="limitConfBorlette">
+      <h2 data-cy="limitConfBorletteDetailsHeading">
+        <span jhiTranslate="lbApp.limitConfBorlette.detail.title">Limit Conf Borlette</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbApp.limitConfBorlette.id">Id</span></dt>
+        <dd>
+          <span>{{ limitConfBorlette.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.limitConfBorlette.nombreValue">Nombre Value</span></dt>
+        <dd>
+          <span>{{ limitConfBorlette.nombreValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.limitConfBorlette.limit">Limit</span></dt>
+        <dd>
+          <span>{{ limitConfBorlette.limit }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.limitConfBorlette.limitStatut">Limit Statut</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'lbApp.TypeOption.' + limitConfBorlette.limitStatut }}">{{ limitConfBorlette.limitStatut }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.limitConfBorlette.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ limitConfBorlette.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.limitConfBorlette.createdDate">Created Date</span></dt>
+        <dd>
+          <span>{{ limitConfBorlette.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.limitConfBorlette.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ limitConfBorlette.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.limitConfBorlette.lastModifiedDate">Last Modified Date</span></dt>
+        <dd>
+          <span>{{ limitConfBorlette.lastModifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.limitConfBorlette.borletteConf">Borlette Conf</span></dt>
+        <dd>
+          <div *ngIf="limitConfBorlette.borletteConf">
+            <a [routerLink]="['/borlette-conf-my-suffix', limitConfBorlette.borletteConf?.id, 'view']">{{
+              limitConfBorlette.borletteConf?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/limit-conf-borlette-my-suffix', limitConfBorlette.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

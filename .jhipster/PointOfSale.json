@@ -1,0 +1,109 @@
+{
+  "angularJSSuffix": "mySuffix",
+  "applications": "*",
+  "changelogDate": "20220706234146",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "point_of_sale",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "adressePoint",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "80",
+      "fieldValidateRulesMinlength": "4"
+    },
+    {
+      "fieldName": "statut",
+      "fieldType": "StatutBanque",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "OPEN,CLOSE"
+    },
+    {
+      "fieldName": "phone1",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "30",
+      "fieldValidateRulesMinlength": "6"
+    },
+    {
+      "fieldName": "phone2",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "30",
+      "fieldValidateRulesMinlength": "6"
+    },
+    {
+      "fieldName": "pourcentagePoint",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength", "required"],
+      "fieldValidateRulesMaxlength": "45",
+      "fieldValidateRulesMinlength": "4"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "45",
+      "fieldValidateRulesMinlength": "4"
+    },
+    {
+      "fieldName": "lastModifiedDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "PointOfSale",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "pointOfSaleConf",
+      "otherEntityRelationshipName": "pointOfSale",
+      "ownerSide": true,
+      "relationshipName": "pointOfSaleConf",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "limitConfPoint",
+      "otherEntityRelationshipName": "pointOfSale",
+      "relationshipName": "limitConfPoint",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "utilisateur",
+      "otherEntityRelationshipName": "pointOfSale",
+      "relationshipName": "utilisateur",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "paiementBanque",
+      "otherEntityRelationshipName": "pointOfSale",
+      "relationshipName": "paiementBanque",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "ticket",
+      "otherEntityRelationshipName": "pointOfSale",
+      "relationshipName": "ticket",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

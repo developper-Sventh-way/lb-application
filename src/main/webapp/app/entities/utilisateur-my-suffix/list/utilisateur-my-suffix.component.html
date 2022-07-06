@@ -1,0 +1,164 @@
+<div>
+  <h2 id="page-heading" data-cy="UtilisateurHeading">
+    <span jhiTranslate="lbApp.utilisateur.home.title">Utilisateurs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="lbApp.utilisateur.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-utilisateur-my-suffix"
+        [routerLink]="['/utilisateur-my-suffix/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="lbApp.utilisateur.home.createLabel"> Create a new Utilisateur </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="utilisateurs?.length === 0">
+    <span jhiTranslate="lbApp.utilisateur.home.notFound">No utilisateurs found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="utilisateurs && utilisateurs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="lbApp.utilisateur.id">Id</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="userName">
+            <span jhiTranslate="lbApp.utilisateur.userName">User Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="password">
+            <span jhiTranslate="lbApp.utilisateur.password">Password</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="typeUser">
+            <span jhiTranslate="lbApp.utilisateur.typeUser">Type User</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="nom"><span jhiTranslate="lbApp.utilisateur.nom">Nom</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="prenom">
+            <span jhiTranslate="lbApp.utilisateur.prenom">Prenom</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="sexe"><span jhiTranslate="lbApp.utilisateur.sexe">Sexe</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nifOuCin">
+            <span jhiTranslate="lbApp.utilisateur.nifOuCin">Nif Ou Cin</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="statut">
+            <span jhiTranslate="lbApp.utilisateur.statut">Statut</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="lbApp.utilisateur.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdDate">
+            <span jhiTranslate="lbApp.utilisateur.createdDate">Created Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="lbApp.utilisateur.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedDate">
+            <span jhiTranslate="lbApp.utilisateur.lastModifiedDate">Last Modified Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="creditSolde.id">
+            <span jhiTranslate="lbApp.utilisateur.creditSolde">Credit Solde</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="userPaymentConf.id">
+            <span jhiTranslate="lbApp.utilisateur.userPaymentConf">User Payment Conf</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="pointOfSale.id">
+            <span jhiTranslate="lbApp.utilisateur.pointOfSale">Point Of Sale</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let utilisateur of utilisateurs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/utilisateur-my-suffix', utilisateur.id, 'view']">{{ utilisateur.id }}</a>
+          </td>
+          <td>{{ utilisateur.userName }}</td>
+          <td>{{ utilisateur.password }}</td>
+          <td jhiTranslate="{{ 'lbApp.TypeUser.' + utilisateur.typeUser }}">{{ utilisateur.typeUser }}</td>
+          <td>{{ utilisateur.nom }}</td>
+          <td>{{ utilisateur.prenom }}</td>
+          <td jhiTranslate="{{ 'lbApp.Sexe.' + utilisateur.sexe }}">{{ utilisateur.sexe }}</td>
+          <td>{{ utilisateur.nifOuCin }}</td>
+          <td jhiTranslate="{{ 'lbApp.UserStatut.' + utilisateur.statut }}">{{ utilisateur.statut }}</td>
+          <td>{{ utilisateur.createdBy }}</td>
+          <td>{{ utilisateur.createdDate | formatMediumDatetime }}</td>
+          <td>{{ utilisateur.lastModifiedBy }}</td>
+          <td>{{ utilisateur.lastModifiedDate | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="utilisateur.creditSolde">
+              <a [routerLink]="['/credit-solde-my-suffix', utilisateur.creditSolde?.id, 'view']">{{ utilisateur.creditSolde?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="utilisateur.userPaymentConf">
+              <a [routerLink]="['/user-payment-conf-my-suffix', utilisateur.userPaymentConf?.id, 'view']">{{
+                utilisateur.userPaymentConf?.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="utilisateur.pointOfSale">
+              <a [routerLink]="['/point-of-sale-my-suffix', utilisateur.pointOfSale?.id, 'view']">{{ utilisateur.pointOfSale?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/utilisateur-my-suffix', utilisateur.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/utilisateur-my-suffix', utilisateur.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(utilisateur)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="utilisateurs && utilisateurs.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

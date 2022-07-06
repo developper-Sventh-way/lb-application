@@ -1,0 +1,31 @@
+{
+  "lbApp": {
+    "limitConfBorlette": {
+      "home": {
+        "title": "Limit Conf Borlettes",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Limit Conf Borlette",
+        "createOrEditLabel": "Crear o editar Limit Conf Borlette",
+        "notFound": "Ningún Limit Conf Borlettes encontrado"
+      },
+      "created": "Un nuevo Limit Conf Borlette ha sido creado con el identificador {{ param }}",
+      "updated": "Un Limit Conf Borlette ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Limit Conf Borlette ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Limit Conf Borlette {{ id }}?"
+      },
+      "detail": {
+        "title": "Limit Conf Borlette"
+      },
+      "id": "Id",
+      "nombreValue": "Nombre Value",
+      "limit": "Limit",
+      "limitStatut": "Limit Statut",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date",
+      "borletteConf": "Borlette Conf"
+    }
+  }
+}

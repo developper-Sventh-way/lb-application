@@ -1,0 +1,27 @@
+{
+  "lbApp": {
+    "limitConfPoint": {
+      "home": {
+        "title": "LimitConfPoints",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Limit Conf Point",
+        "createOrEditLabel": "Créer ou éditer un Limit Conf Point",
+        "notFound": "Aucun Limit Conf Point trouvé"
+      },
+      "created": "Un nouveau Limit Conf Point a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Limit Conf Point avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Limit Conf Point avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Limit Conf Point {{ id }} ?"
+      },
+      "detail": {
+        "title": "Limit Conf Point"
+      },
+      "id": "Id",
+      "nombreValue": "Nombre Value",
+      "limit": "Limit",
+      "limitStatut": "Limit Statut",
+      "pointOfSale": "Point Of Sale"
+    }
+  }
+}

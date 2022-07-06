@@ -1,0 +1,28 @@
+{
+  "lbApp": {
+    "systemTrace": {
+      "home": {
+        "title": "SystemTraces",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau System Trace",
+        "createOrEditLabel": "Créer ou éditer un System Trace",
+        "notFound": "Aucun System Trace trouvé"
+      },
+      "created": "Un nouveau System Trace a été créé avec l'identifiant {{ param }}",
+      "updated": "Le System Trace avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le System Trace avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le System Trace {{ id }} ?"
+      },
+      "detail": {
+        "title": "System Trace"
+      },
+      "id": "Id",
+      "traceContenu": "Trace Contenu",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date"
+    }
+  }
+}

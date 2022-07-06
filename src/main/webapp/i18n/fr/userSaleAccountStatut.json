@@ -1,0 +1,9 @@
+{
+  "lbApp": {
+    "UserSaleAccountStatut": {
+      "null": "",
+      "ACTIVE": "ACTIVE",
+      "CLOSED": "CLOSED"
+    }
+  }
+}

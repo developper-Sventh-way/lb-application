@@ -1,0 +1,33 @@
+{
+  "lbApp": {
+    "ticketOption": {
+      "home": {
+        "title": "Ticket Options",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Ticket Option",
+        "createOrEditLabel": "Create or edit a Ticket Option",
+        "notFound": "No Ticket Options found"
+      },
+      "created": "A new Ticket Option is created with identifier {{ param }}",
+      "updated": "A Ticket Option is updated with identifier {{ param }}",
+      "deleted": "A Ticket Option is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Ticket Option {{ id }}?"
+      },
+      "detail": {
+        "title": "Ticket Option"
+      },
+      "id": "Id",
+      "contenu": "Contenu",
+      "playAmount": "Play Amount",
+      "typeOption": "Type Option",
+      "statutOption": "Statut Option",
+      "multiplicateur": "Multiplicateur",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date",
+      "ticket": "Ticket"
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "angularJSSuffix": "mySuffix",
+  "applications": "*",
+  "changelogDate": "20220706234139",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "borlette_conf",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "TirageName",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "NEWYORK,FLORIDA,GEORGIA"
+    },
+    {
+      "fieldName": "premierLot",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "deuxiemeLot",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "troisiemeLot",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "mariageGratisPrix",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "montantMinimum",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "montantMaximum",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "closeTimeMidi",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "5",
+      "fieldValidateRulesMinlength": "5"
+    },
+    {
+      "fieldName": "closeTimeSoir",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "5",
+      "fieldValidateRulesMinlength": "5"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "BorletteConf",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "limitConfBorlette",
+      "otherEntityRelationshipName": "borletteConf",
+      "relationshipName": "limitConfBorlette",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "tirage",
+      "otherEntityRelationshipName": "borletteConf",
+      "relationshipName": "tirage",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

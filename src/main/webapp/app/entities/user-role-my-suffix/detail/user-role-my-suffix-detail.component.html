@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="userRole">
+      <h2 data-cy="userRoleDetailsHeading"><span jhiTranslate="lbApp.userRole.detail.title">User Role</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbApp.userRole.id">Id</span></dt>
+        <dd>
+          <span>{{ userRole.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userRole.role">Role</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'lbApp.UserRoleName.' + userRole.role }}">{{ userRole.role }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userRole.description">Description</span></dt>
+        <dd>
+          <span>{{ userRole.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userRole.exceptions">Exceptions</span></dt>
+        <dd>
+          <span>{{ userRole.exceptions }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userRole.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ userRole.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userRole.createdDate">Created Date</span></dt>
+        <dd>
+          <span>{{ userRole.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userRole.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ userRole.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userRole.lastModifiedDate">Last Modified Date</span></dt>
+        <dd>
+          <span>{{ userRole.lastModifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.userRole.utilisateur">Utilisateur</span></dt>
+        <dd>
+          <div *ngIf="userRole.utilisateur">
+            <a [routerLink]="['/utilisateur-my-suffix', userRole.utilisateur?.id, 'view']">{{ userRole.utilisateur?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/user-role-my-suffix', userRole.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

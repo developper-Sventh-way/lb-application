@@ -1,0 +1,37 @@
+{
+  "lbApp": {
+    "pointOfSale": {
+      "home": {
+        "title": "Point Of Sales",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Point Of Sale",
+        "createOrEditLabel": "Crear o editar Point Of Sale",
+        "notFound": "Ningún Point Of Sales encontrado"
+      },
+      "created": "Un nuevo Point Of Sale ha sido creado con el identificador {{ param }}",
+      "updated": "Un Point Of Sale ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Point Of Sale ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Point Of Sale {{ id }}?"
+      },
+      "detail": {
+        "title": "Point Of Sale"
+      },
+      "id": "Id",
+      "adressePoint": "Adresse Point",
+      "statut": "Statut",
+      "phone1": "Phone 1",
+      "phone2": "Phone 2",
+      "pourcentagePoint": "Pourcentage Point",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date",
+      "pointOfSaleConf": "Point Of Sale Conf",
+      "limitConfPoint": "Limit Conf Point",
+      "utilisateur": "Utilisateur",
+      "paiementBanque": "Paiement Banque",
+      "ticket": "Ticket"
+    }
+  }
+}

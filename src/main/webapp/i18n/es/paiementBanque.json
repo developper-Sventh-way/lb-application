@@ -1,0 +1,34 @@
+{
+  "lbApp": {
+    "paiementBanque": {
+      "home": {
+        "title": "Paiement Banques",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Paiement Banque",
+        "createOrEditLabel": "Crear o editar Paiement Banque",
+        "notFound": "Ningún Paiement Banques encontrado"
+      },
+      "created": "Un nuevo Paiement Banque ha sido creado con el identificador {{ param }}",
+      "updated": "Un Paiement Banque ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Paiement Banque ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Paiement Banque {{ id }}?"
+      },
+      "detail": {
+        "title": "Paiement Banque"
+      },
+      "id": "Id",
+      "montant": "Montant",
+      "balance": "Balance",
+      "description": "Description",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date",
+      "pointOfSale": "Point Of Sale",
+      "utilisateur": "Utilisateur"
+    }
+  }
+}

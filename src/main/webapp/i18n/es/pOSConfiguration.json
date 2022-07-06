@@ -1,0 +1,30 @@
+{
+  "lbApp": {
+    "pOSConfiguration": {
+      "home": {
+        "title": "POS Configurations",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo POS Configuration",
+        "createOrEditLabel": "Crear o editar POS Configuration",
+        "notFound": "Ningún POS Configurations encontrado"
+      },
+      "created": "Un nuevo POS Configuration ha sido creado con el identificador {{ param }}",
+      "updated": "Un POS Configuration ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un POS Configuration ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar POS Configuration {{ id }}?"
+      },
+      "detail": {
+        "title": "POS Configuration"
+      },
+      "id": "Id",
+      "pOSName": "P OS Name",
+      "iMEI": "I MEI",
+      "deviceStatut": "Device Statut",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date"
+    }
+  }
+}

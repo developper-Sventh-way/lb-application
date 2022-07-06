@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Utilisateur.
+    -->
+    <changeSet id="20220706234200-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="credit_solde_id"
+                                 baseTableName="utilisateur"
+                                 constraintName="fk_utilisateur__credit_solde_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="credit_solde"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_payment_conf_id"
+                                 baseTableName="utilisateur"
+                                 constraintName="fk_utilisateur__user_payment_conf_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_payment_conf"/>
+
+        <addForeignKeyConstraint baseColumnNames="point_of_sale_id"
+                                 baseTableName="utilisateur"
+                                 constraintName="fk_utilisateur__point_of_sale_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="point_of_sale"/>
+    </changeSet>
+</databaseChangeLog>

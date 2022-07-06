@@ -1,0 +1,29 @@
+{
+  "lbApp": {
+    "creditSolde": {
+      "home": {
+        "title": "Credit Soldes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Credit Solde",
+        "createOrEditLabel": "Create or edit a Credit Solde",
+        "notFound": "No Credit Soldes found"
+      },
+      "created": "A new Credit Solde is created with identifier {{ param }}",
+      "updated": "A Credit Solde is updated with identifier {{ param }}",
+      "deleted": "A Credit Solde is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Credit Solde {{ id }}?"
+      },
+      "detail": {
+        "title": "Credit Solde"
+      },
+      "id": "Id",
+      "montant": "Montant",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date",
+      "utilisateur": "Utilisateur"
+    }
+  }
+}

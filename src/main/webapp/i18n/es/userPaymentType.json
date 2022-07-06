@@ -1,0 +1,9 @@
+{
+  "lbApp": {
+    "UserPaymentType": {
+      "null": "",
+      "FIX": "FIX",
+      "POURCENTAGE": "POURCENTAGE"
+    }
+  }
+}

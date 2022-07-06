@@ -1,0 +1,29 @@
+{
+  "lbApp": {
+    "creditSolde": {
+      "home": {
+        "title": "CreditSoldes",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Credit Solde",
+        "createOrEditLabel": "Créer ou éditer un Credit Solde",
+        "notFound": "Aucun Credit Solde trouvé"
+      },
+      "created": "Un nouveau Credit Solde a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Credit Solde avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Credit Solde avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Credit Solde {{ id }} ?"
+      },
+      "detail": {
+        "title": "Credit Solde"
+      },
+      "id": "Id",
+      "montant": "Montant",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date",
+      "utilisateur": "Utilisateur"
+    }
+  }
+}

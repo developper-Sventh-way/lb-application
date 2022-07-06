@@ -1,0 +1,128 @@
+<div>
+  <h2 id="page-heading" data-cy="BorletteConfHeading">
+    <span jhiTranslate="lbApp.borletteConf.home.title">Borlette Confs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="lbApp.borletteConf.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-borlette-conf-my-suffix"
+        [routerLink]="['/borlette-conf-my-suffix/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="lbApp.borletteConf.home.createLabel"> Create a new Borlette Conf </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="borletteConfs?.length === 0">
+    <span jhiTranslate="lbApp.borletteConf.home.notFound">No borletteConfs found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="borletteConfs && borletteConfs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="lbApp.borletteConf.id">Id</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="name"><span jhiTranslate="lbApp.borletteConf.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="premierLot">
+            <span jhiTranslate="lbApp.borletteConf.premierLot">Premier Lot</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="deuxiemeLot">
+            <span jhiTranslate="lbApp.borletteConf.deuxiemeLot">Deuxieme Lot</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="troisiemeLot">
+            <span jhiTranslate="lbApp.borletteConf.troisiemeLot">Troisieme Lot</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="mariageGratisPrix">
+            <span jhiTranslate="lbApp.borletteConf.mariageGratisPrix">Mariage Gratis Prix</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="montantMinimum">
+            <span jhiTranslate="lbApp.borletteConf.montantMinimum">Montant Minimum</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="montantMaximum">
+            <span jhiTranslate="lbApp.borletteConf.montantMaximum">Montant Maximum</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="closeTimeMidi">
+            <span jhiTranslate="lbApp.borletteConf.closeTimeMidi">Close Time Midi</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="closeTimeSoir">
+            <span jhiTranslate="lbApp.borletteConf.closeTimeSoir">Close Time Soir</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let borletteConf of borletteConfs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/borlette-conf-my-suffix', borletteConf.id, 'view']">{{ borletteConf.id }}</a>
+          </td>
+          <td jhiTranslate="{{ 'lbApp.TirageName.' + borletteConf.name }}">{{ borletteConf.name }}</td>
+          <td>{{ borletteConf.premierLot }}</td>
+          <td>{{ borletteConf.deuxiemeLot }}</td>
+          <td>{{ borletteConf.troisiemeLot }}</td>
+          <td>{{ borletteConf.mariageGratisPrix }}</td>
+          <td>{{ borletteConf.montantMinimum }}</td>
+          <td>{{ borletteConf.montantMaximum }}</td>
+          <td>{{ borletteConf.closeTimeMidi }}</td>
+          <td>{{ borletteConf.closeTimeSoir }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/borlette-conf-my-suffix', borletteConf.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/borlette-conf-my-suffix', borletteConf.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(borletteConf)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="borletteConfs && borletteConfs.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,142 @@
+<div>
+  <h2 id="page-heading" data-cy="TirageHeading">
+    <span jhiTranslate="lbApp.tirage.home.title">Tirages</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="lbApp.tirage.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-tirage-my-suffix"
+        [routerLink]="['/tirage-my-suffix/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="lbApp.tirage.home.createLabel"> Create a new Tirage </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="tirages?.length === 0">
+    <span jhiTranslate="lbApp.tirage.home.notFound">No tirages found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="tirages && tirages.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="lbApp.tirage.id">Id</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="tirageName">
+            <span jhiTranslate="lbApp.tirage.tirageName">Tirage Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="type"><span jhiTranslate="lbApp.tirage.type">Type</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="premierLot">
+            <span jhiTranslate="lbApp.tirage.premierLot">Premier Lot</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="deuxiemeLot">
+            <span jhiTranslate="lbApp.tirage.deuxiemeLot">Deuxieme Lot</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="troisiemeLot">
+            <span jhiTranslate="lbApp.tirage.troisiemeLot">Troisieme Lot</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="loto3Chif">
+            <span jhiTranslate="lbApp.tirage.loto3Chif">Loto 3 Chif</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="statut"><span jhiTranslate="lbApp.tirage.statut">Statut</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="lbApp.tirage.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdDate">
+            <span jhiTranslate="lbApp.tirage.createdDate">Created Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="lbApp.tirage.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedDate">
+            <span jhiTranslate="lbApp.tirage.lastModifiedDate">Last Modified Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="borletteConf.id">
+            <span jhiTranslate="lbApp.tirage.borletteConf">Borlette Conf</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tirage of tirages; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/tirage-my-suffix', tirage.id, 'view']">{{ tirage.id }}</a>
+          </td>
+          <td jhiTranslate="{{ 'lbApp.TirageName.' + tirage.tirageName }}">{{ tirage.tirageName }}</td>
+          <td jhiTranslate="{{ 'lbApp.TirageType.' + tirage.type }}">{{ tirage.type }}</td>
+          <td>{{ tirage.premierLot }}</td>
+          <td>{{ tirage.deuxiemeLot }}</td>
+          <td>{{ tirage.troisiemeLot }}</td>
+          <td>{{ tirage.loto3Chif }}</td>
+          <td jhiTranslate="{{ 'lbApp.UserStatut.' + tirage.statut }}">{{ tirage.statut }}</td>
+          <td>{{ tirage.createdBy }}</td>
+          <td>{{ tirage.createdDate | formatMediumDatetime }}</td>
+          <td>{{ tirage.lastModifiedBy }}</td>
+          <td>{{ tirage.lastModifiedDate | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="tirage.borletteConf">
+              <a [routerLink]="['/borlette-conf-my-suffix', tirage.borletteConf?.id, 'view']">{{ tirage.borletteConf?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/tirage-my-suffix', tirage.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/tirage-my-suffix', tirage.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(tirage)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="tirages && tirages.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,307 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-borlette-conf-my-suffix-heading"
+        data-cy="BorletteConfCreateUpdateHeading"
+        jhiTranslate="lbApp.borletteConf.home.createOrEditLabel"
+      >
+        Create or edit a Borlette Conf
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="lbApp.borletteConf.id" for="field_id">Id</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          <div *ngIf="editForm.get('id')!.invalid && (editForm.get('id')!.dirty || editForm.get('id')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('id')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('id')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.borletteConf.name" for="field_name">Name</label>
+          <select class="form-control" name="name" formControlName="name" id="field_name" data-cy="name">
+            <option [ngValue]="null">{{ 'lbApp.TirageName.null' | translate }}</option>
+            <option *ngFor="let tirageName of tirageNameValues" [value]="tirageName">
+              {{ 'lbApp.TirageName.' + tirageName | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.borletteConf.premierLot" for="field_premierLot">Premier Lot</label>
+          <input
+            type="number"
+            class="form-control"
+            name="premierLot"
+            id="field_premierLot"
+            data-cy="premierLot"
+            formControlName="premierLot"
+          />
+          <div *ngIf="editForm.get('premierLot')!.invalid && (editForm.get('premierLot')!.dirty || editForm.get('premierLot')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('premierLot')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('premierLot')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.borletteConf.deuxiemeLot" for="field_deuxiemeLot">Deuxieme Lot</label>
+          <input
+            type="number"
+            class="form-control"
+            name="deuxiemeLot"
+            id="field_deuxiemeLot"
+            data-cy="deuxiemeLot"
+            formControlName="deuxiemeLot"
+          />
+          <div *ngIf="editForm.get('deuxiemeLot')!.invalid && (editForm.get('deuxiemeLot')!.dirty || editForm.get('deuxiemeLot')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('deuxiemeLot')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('deuxiemeLot')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.borletteConf.troisiemeLot" for="field_troisiemeLot">Troisieme Lot</label>
+          <input
+            type="number"
+            class="form-control"
+            name="troisiemeLot"
+            id="field_troisiemeLot"
+            data-cy="troisiemeLot"
+            formControlName="troisiemeLot"
+          />
+          <div
+            *ngIf="editForm.get('troisiemeLot')!.invalid && (editForm.get('troisiemeLot')!.dirty || editForm.get('troisiemeLot')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('troisiemeLot')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('troisiemeLot')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.borletteConf.mariageGratisPrix" for="field_mariageGratisPrix"
+            >Mariage Gratis Prix</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="mariageGratisPrix"
+            id="field_mariageGratisPrix"
+            data-cy="mariageGratisPrix"
+            formControlName="mariageGratisPrix"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.borletteConf.montantMinimum" for="field_montantMinimum">Montant Minimum</label>
+          <input
+            type="number"
+            class="form-control"
+            name="montantMinimum"
+            id="field_montantMinimum"
+            data-cy="montantMinimum"
+            formControlName="montantMinimum"
+          />
+          <div
+            *ngIf="
+              editForm.get('montantMinimum')!.invalid && (editForm.get('montantMinimum')!.dirty || editForm.get('montantMinimum')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('montantMinimum')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('montantMinimum')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.borletteConf.montantMaximum" for="field_montantMaximum">Montant Maximum</label>
+          <input
+            type="number"
+            class="form-control"
+            name="montantMaximum"
+            id="field_montantMaximum"
+            data-cy="montantMaximum"
+            formControlName="montantMaximum"
+          />
+          <div
+            *ngIf="
+              editForm.get('montantMaximum')!.invalid && (editForm.get('montantMaximum')!.dirty || editForm.get('montantMaximum')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('montantMaximum')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('montantMaximum')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.borletteConf.closeTimeMidi" for="field_closeTimeMidi">Close Time Midi</label>
+          <input
+            type="text"
+            class="form-control"
+            name="closeTimeMidi"
+            id="field_closeTimeMidi"
+            data-cy="closeTimeMidi"
+            formControlName="closeTimeMidi"
+          />
+          <div
+            *ngIf="
+              editForm.get('closeTimeMidi')!.invalid && (editForm.get('closeTimeMidi')!.dirty || editForm.get('closeTimeMidi')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('closeTimeMidi')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('closeTimeMidi')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 5 }"
+            >
+              This field is required to be at least 5 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('closeTimeMidi')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 5 }"
+            >
+              This field cannot be longer than 5 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lbApp.borletteConf.closeTimeSoir" for="field_closeTimeSoir">Close Time Soir</label>
+          <input
+            type="text"
+            class="form-control"
+            name="closeTimeSoir"
+            id="field_closeTimeSoir"
+            data-cy="closeTimeSoir"
+            formControlName="closeTimeSoir"
+          />
+          <div
+            *ngIf="
+              editForm.get('closeTimeSoir')!.invalid && (editForm.get('closeTimeSoir')!.dirty || editForm.get('closeTimeSoir')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('closeTimeSoir')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('closeTimeSoir')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 5 }"
+            >
+              This field is required to be at least 5 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('closeTimeSoir')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 5 }"
+            >
+              This field cannot be longer than 5 characters.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

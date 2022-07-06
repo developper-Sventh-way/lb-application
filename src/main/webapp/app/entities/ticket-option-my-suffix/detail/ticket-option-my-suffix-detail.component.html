@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="ticketOption">
+      <h2 data-cy="ticketOptionDetailsHeading"><span jhiTranslate="lbApp.ticketOption.detail.title">Ticket Option</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbApp.ticketOption.id">Id</span></dt>
+        <dd>
+          <span>{{ ticketOption.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticketOption.contenu">Contenu</span></dt>
+        <dd>
+          <span>{{ ticketOption.contenu }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticketOption.playAmount">Play Amount</span></dt>
+        <dd>
+          <span>{{ ticketOption.playAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticketOption.typeOption">Type Option</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'lbApp.TypeOption.' + ticketOption.typeOption }}">{{ ticketOption.typeOption }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticketOption.statutOption">Statut Option</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'lbApp.StatutFiche.' + ticketOption.statutOption }}">{{ ticketOption.statutOption }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticketOption.multiplicateur">Multiplicateur</span></dt>
+        <dd>
+          <span>{{ ticketOption.multiplicateur }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticketOption.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ ticketOption.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticketOption.createdDate">Created Date</span></dt>
+        <dd>
+          <span>{{ ticketOption.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticketOption.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ ticketOption.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticketOption.lastModifiedDate">Last Modified Date</span></dt>
+        <dd>
+          <span>{{ ticketOption.lastModifiedDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.ticketOption.ticket">Ticket</span></dt>
+        <dd>
+          <div *ngIf="ticketOption.ticket">
+            <a [routerLink]="['/ticket-my-suffix', ticketOption.ticket?.id, 'view']">{{ ticketOption.ticket?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/ticket-option-my-suffix', ticketOption.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

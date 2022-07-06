@@ -1,0 +1,36 @@
+{
+  "lbApp": {
+    "tirage": {
+      "home": {
+        "title": "Tirages",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Tirage",
+        "createOrEditLabel": "Créer ou éditer un Tirage",
+        "notFound": "Aucun Tirage trouvé"
+      },
+      "created": "Un nouveau Tirage a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Tirage avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Tirage avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Tirage {{ id }} ?"
+      },
+      "detail": {
+        "title": "Tirage"
+      },
+      "id": "Id",
+      "tirageName": "Tirage Name",
+      "type": "Type",
+      "premierLot": "Premier Lot",
+      "deuxiemeLot": "Deuxieme Lot",
+      "troisiemeLot": "Troisieme Lot",
+      "loto3Chif": "Loto 3 Chif",
+      "statut": "Statut",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date",
+      "ticket": "Ticket",
+      "borletteConf": "Borlette Conf"
+    }
+  }
+}

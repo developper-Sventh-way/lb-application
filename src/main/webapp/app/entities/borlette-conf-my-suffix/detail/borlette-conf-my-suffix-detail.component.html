@@ -1,0 +1,64 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="borletteConf">
+      <h2 data-cy="borletteConfDetailsHeading"><span jhiTranslate="lbApp.borletteConf.detail.title">Borlette Conf</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbApp.borletteConf.id">Id</span></dt>
+        <dd>
+          <span>{{ borletteConf.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.borletteConf.name">Name</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'lbApp.TirageName.' + borletteConf.name }}">{{ borletteConf.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.borletteConf.premierLot">Premier Lot</span></dt>
+        <dd>
+          <span>{{ borletteConf.premierLot }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.borletteConf.deuxiemeLot">Deuxieme Lot</span></dt>
+        <dd>
+          <span>{{ borletteConf.deuxiemeLot }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.borletteConf.troisiemeLot">Troisieme Lot</span></dt>
+        <dd>
+          <span>{{ borletteConf.troisiemeLot }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.borletteConf.mariageGratisPrix">Mariage Gratis Prix</span></dt>
+        <dd>
+          <span>{{ borletteConf.mariageGratisPrix }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.borletteConf.montantMinimum">Montant Minimum</span></dt>
+        <dd>
+          <span>{{ borletteConf.montantMinimum }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.borletteConf.montantMaximum">Montant Maximum</span></dt>
+        <dd>
+          <span>{{ borletteConf.montantMaximum }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.borletteConf.closeTimeMidi">Close Time Midi</span></dt>
+        <dd>
+          <span>{{ borletteConf.closeTimeMidi }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.borletteConf.closeTimeSoir">Close Time Soir</span></dt>
+        <dd>
+          <span>{{ borletteConf.closeTimeSoir }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/borlette-conf-my-suffix', borletteConf.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

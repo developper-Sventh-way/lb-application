@@ -1,0 +1,68 @@
+{
+  "angularJSSuffix": "mySuffix",
+  "applications": "*",
+  "changelogDate": "20220706234142",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "limit_conf_borlette",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nombreValue",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "5",
+      "fieldValidateRulesMinlength": "2"
+    },
+    {
+      "fieldName": "limit",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "limitStatut",
+      "fieldType": "TypeOption",
+      "fieldValues": "MARIAGE,LOTO3CHIF,LOTO4CHIF,LOTO5CHIF,PREMIERLOT,DEUXIEMELOT,TROISIEMELOT,ALEATOIRE,LOTO4CHIFOPTION1,LOTO4CHIFOPTION2,LOTO4CHIFOPTION3,LOTO5CHIFOPTION1,LOTO5CHIFOPTION2,LOTO5CHIFOPTION3"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "45",
+      "fieldValidateRulesMinlength": "4"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "45",
+      "fieldValidateRulesMinlength": "4"
+    },
+    {
+      "fieldName": "lastModifiedDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "LimitConfBorlette",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "borletteConf",
+      "otherEntityRelationshipName": "limitConfBorlette",
+      "relationshipName": "borletteConf",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

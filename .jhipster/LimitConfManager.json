@@ -1,0 +1,46 @@
+{
+  "angularJSSuffix": "mySuffix",
+  "applications": "*",
+  "changelogDate": "20220706234143",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "limit_conf_manager",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nombreValue",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "5",
+      "fieldValidateRulesMinlength": "2"
+    },
+    {
+      "fieldName": "limit",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "limitStatut",
+      "fieldType": "TypeOption",
+      "fieldValues": "MARIAGE,LOTO3CHIF,LOTO4CHIF,LOTO5CHIF,PREMIERLOT,DEUXIEMELOT,TROISIEMELOT,ALEATOIRE,LOTO4CHIFOPTION1,LOTO4CHIFOPTION2,LOTO4CHIFOPTION3,LOTO5CHIFOPTION1,LOTO5CHIFOPTION2,LOTO5CHIFOPTION3"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "LimitConfManager",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "membershipConf",
+      "otherEntityRelationshipName": "limitConfManager",
+      "relationshipName": "membershipConf",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

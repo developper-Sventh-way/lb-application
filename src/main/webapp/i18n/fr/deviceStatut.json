@@ -1,0 +1,9 @@
+{
+  "lbApp": {
+    "DeviceStatut": {
+      "null": "",
+      "ACTIVE": "ACTIVE",
+      "BLOQUER": "BLOQUER"
+    }
+  }
+}

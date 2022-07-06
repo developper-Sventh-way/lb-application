@@ -15,7 +15,42 @@
     <property name="datetimeType" value="datetime" dbms="oracle, mssql, postgresql, h2"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234139_added_entity_BorletteConf.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234140_added_entity_CouponGratuitConf.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234141_added_entity_CreditSolde.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234142_added_entity_LimitConfBorlette.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234143_added_entity_LimitConfManager.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234144_added_entity_LimitConfPoint.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234145_added_entity_PaiementBanque.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234146_added_entity_PointOfSale.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234147_added_entity_PointOfSaleConf.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234148_added_entity_PointOfSaleMembership.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234149_added_entity_MembershipConf.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234150_added_entity_POSConfiguration.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234151_added_entity_SystemTrace.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234152_added_entity_Ticket.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234153_added_entity_TicketOption.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234154_added_entity_Tirage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234155_added_entity_TransactionHistories.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234156_added_entity_UserPayment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234157_added_entity_UserPaymentConf.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234158_added_entity_UserRole.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234159_added_entity_UserSaleAccount.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234200_added_entity_Utilisateur.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20220706234142_added_entity_constraints_LimitConfBorlette.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234143_added_entity_constraints_LimitConfManager.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234144_added_entity_constraints_LimitConfPoint.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234145_added_entity_constraints_PaiementBanque.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234146_added_entity_constraints_PointOfSale.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234148_added_entity_constraints_PointOfSaleMembership.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234152_added_entity_constraints_Ticket.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234153_added_entity_constraints_TicketOption.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234154_added_entity_constraints_Tirage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234156_added_entity_constraints_UserPayment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234158_added_entity_constraints_UserRole.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234159_added_entity_constraints_UserSaleAccount.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220706234200_added_entity_constraints_Utilisateur.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

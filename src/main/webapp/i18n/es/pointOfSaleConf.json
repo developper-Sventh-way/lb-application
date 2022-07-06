@@ -1,0 +1,32 @@
+{
+  "lbApp": {
+    "pointOfSaleConf": {
+      "home": {
+        "title": "Point Of Sale Confs",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Point Of Sale Conf",
+        "createOrEditLabel": "Crear o editar Point Of Sale Conf",
+        "notFound": "Ningún Point Of Sale Confs encontrado"
+      },
+      "created": "Un nuevo Point Of Sale Conf ha sido creado con el identificador {{ param }}",
+      "updated": "Un Point Of Sale Conf ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Point Of Sale Conf ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Point Of Sale Conf {{ id }}?"
+      },
+      "detail": {
+        "title": "Point Of Sale Conf"
+      },
+      "id": "Id",
+      "pourcentageCaissier": "Pourcentage Caissier",
+      "pourcentageResponsable": "Pourcentage Responsable",
+      "startTime": "Start Time",
+      "endTime": "End Time",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date",
+      "pointOfSale": "Point Of Sale"
+    }
+  }
+}

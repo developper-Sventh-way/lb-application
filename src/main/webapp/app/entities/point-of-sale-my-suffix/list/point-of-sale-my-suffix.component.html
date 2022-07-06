@@ -1,0 +1,140 @@
+<div>
+  <h2 id="page-heading" data-cy="PointOfSaleHeading">
+    <span jhiTranslate="lbApp.pointOfSale.home.title">Point Of Sales</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="lbApp.pointOfSale.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-point-of-sale-my-suffix"
+        [routerLink]="['/point-of-sale-my-suffix/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="lbApp.pointOfSale.home.createLabel"> Create a new Point Of Sale </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="pointOfSales?.length === 0">
+    <span jhiTranslate="lbApp.pointOfSale.home.notFound">No pointOfSales found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="pointOfSales && pointOfSales.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="lbApp.pointOfSale.id">Id</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="adressePoint">
+            <span jhiTranslate="lbApp.pointOfSale.adressePoint">Adresse Point</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="statut">
+            <span jhiTranslate="lbApp.pointOfSale.statut">Statut</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="phone1">
+            <span jhiTranslate="lbApp.pointOfSale.phone1">Phone 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="phone2">
+            <span jhiTranslate="lbApp.pointOfSale.phone2">Phone 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="pourcentagePoint">
+            <span jhiTranslate="lbApp.pointOfSale.pourcentagePoint">Pourcentage Point</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="lbApp.pointOfSale.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdDate">
+            <span jhiTranslate="lbApp.pointOfSale.createdDate">Created Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="lbApp.pointOfSale.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedDate">
+            <span jhiTranslate="lbApp.pointOfSale.lastModifiedDate">Last Modified Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="pointOfSaleConf.id">
+            <span jhiTranslate="lbApp.pointOfSale.pointOfSaleConf">Point Of Sale Conf</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pointOfSale of pointOfSales; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/point-of-sale-my-suffix', pointOfSale.id, 'view']">{{ pointOfSale.id }}</a>
+          </td>
+          <td>{{ pointOfSale.adressePoint }}</td>
+          <td jhiTranslate="{{ 'lbApp.StatutBanque.' + pointOfSale.statut }}">{{ pointOfSale.statut }}</td>
+          <td>{{ pointOfSale.phone1 }}</td>
+          <td>{{ pointOfSale.phone2 }}</td>
+          <td>{{ pointOfSale.pourcentagePoint }}</td>
+          <td>{{ pointOfSale.createdBy }}</td>
+          <td>{{ pointOfSale.createdDate | formatMediumDatetime }}</td>
+          <td>{{ pointOfSale.lastModifiedBy }}</td>
+          <td>{{ pointOfSale.lastModifiedDate | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="pointOfSale.pointOfSaleConf">
+              <a [routerLink]="['/point-of-sale-conf-my-suffix', pointOfSale.pointOfSaleConf?.id, 'view']">{{
+                pointOfSale.pointOfSaleConf?.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/point-of-sale-my-suffix', pointOfSale.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/point-of-sale-my-suffix', pointOfSale.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(pointOfSale)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="pointOfSales && pointOfSales.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

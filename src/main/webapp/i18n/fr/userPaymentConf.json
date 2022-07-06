@@ -1,0 +1,30 @@
+{
+  "lbApp": {
+    "userPaymentConf": {
+      "home": {
+        "title": "UserPaymentConfs",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau User Payment Conf",
+        "createOrEditLabel": "Créer ou éditer un User Payment Conf",
+        "notFound": "Aucun User Payment Conf trouvé"
+      },
+      "created": "Un nouveau User Payment Conf a été créé avec l'identifiant {{ param }}",
+      "updated": "Le User Payment Conf avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le User Payment Conf avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le User Payment Conf {{ id }} ?"
+      },
+      "detail": {
+        "title": "User Payment Conf"
+      },
+      "id": "Id",
+      "type": "Type",
+      "total": "Total",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date",
+      "utilisateur": "Utilisateur"
+    }
+  }
+}

@@ -1,0 +1,126 @@
+<div>
+  <h2 id="page-heading" data-cy="PointOfSaleConfHeading">
+    <span jhiTranslate="lbApp.pointOfSaleConf.home.title">Point Of Sale Confs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="lbApp.pointOfSaleConf.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-point-of-sale-conf-my-suffix"
+        [routerLink]="['/point-of-sale-conf-my-suffix/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="lbApp.pointOfSaleConf.home.createLabel"> Create a new Point Of Sale Conf </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="pointOfSaleConfs?.length === 0">
+    <span jhiTranslate="lbApp.pointOfSaleConf.home.notFound">No pointOfSaleConfs found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="pointOfSaleConfs && pointOfSaleConfs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="lbApp.pointOfSaleConf.id">Id</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="pourcentageCaissier">
+            <span jhiTranslate="lbApp.pointOfSaleConf.pourcentageCaissier">Pourcentage Caissier</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="pourcentageResponsable">
+            <span jhiTranslate="lbApp.pointOfSaleConf.pourcentageResponsable">Pourcentage Responsable</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="startTime">
+            <span jhiTranslate="lbApp.pointOfSaleConf.startTime">Start Time</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="endTime">
+            <span jhiTranslate="lbApp.pointOfSaleConf.endTime">End Time</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="lbApp.pointOfSaleConf.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdDate">
+            <span jhiTranslate="lbApp.pointOfSaleConf.createdDate">Created Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="lbApp.pointOfSaleConf.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedDate">
+            <span jhiTranslate="lbApp.pointOfSaleConf.lastModifiedDate">Last Modified Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pointOfSaleConf of pointOfSaleConfs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/point-of-sale-conf-my-suffix', pointOfSaleConf.id, 'view']">{{ pointOfSaleConf.id }}</a>
+          </td>
+          <td>{{ pointOfSaleConf.pourcentageCaissier }}</td>
+          <td>{{ pointOfSaleConf.pourcentageResponsable }}</td>
+          <td>{{ pointOfSaleConf.startTime }}</td>
+          <td>{{ pointOfSaleConf.endTime }}</td>
+          <td>{{ pointOfSaleConf.createdBy }}</td>
+          <td>{{ pointOfSaleConf.createdDate | formatMediumDatetime }}</td>
+          <td>{{ pointOfSaleConf.lastModifiedBy }}</td>
+          <td>{{ pointOfSaleConf.lastModifiedDate | formatMediumDatetime }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/point-of-sale-conf-my-suffix', pointOfSaleConf.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/point-of-sale-conf-my-suffix', pointOfSaleConf.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(pointOfSaleConf)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="pointOfSaleConfs && pointOfSaleConfs.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

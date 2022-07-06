@@ -1,0 +1,164 @@
+<div>
+  <h2 id="page-heading" data-cy="TicketHeading">
+    <span jhiTranslate="lbApp.ticket.home.title">Tickets</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="lbApp.ticket.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-ticket-my-suffix"
+        [routerLink]="['/ticket-my-suffix/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="lbApp.ticket.home.createLabel"> Create a new Ticket </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="tickets?.length === 0">
+    <span jhiTranslate="lbApp.ticket.home.notFound">No tickets found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="tickets && tickets.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="lbApp.ticket.id">Id</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="ticketNo">
+            <span jhiTranslate="lbApp.ticket.ticketNo">Ticket No</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="statutFiche">
+            <span jhiTranslate="lbApp.ticket.statutFiche">Statut Fiche</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="closeBy"><span jhiTranslate="lbApp.ticket.closeBy">Close By</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="closeDate">
+            <span jhiTranslate="lbApp.ticket.closeDate">Close Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isClosed">
+            <span jhiTranslate="lbApp.ticket.isClosed">Is Closed</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="closeById">
+            <span jhiTranslate="lbApp.ticket.closeById">Close By Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="payBy"><span jhiTranslate="lbApp.ticket.payBy">Pay By</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="payDate"><span jhiTranslate="lbApp.ticket.payDate">Pay Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="isPay"><span jhiTranslate="lbApp.ticket.isPay">Is Pay</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="payById">
+            <span jhiTranslate="lbApp.ticket.payById">Pay By Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="lbApp.ticket.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdDate">
+            <span jhiTranslate="lbApp.ticket.createdDate">Created Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="lbApp.ticket.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedDate">
+            <span jhiTranslate="lbApp.ticket.lastModifiedDate">Last Modified Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="pointOfSale.id">
+            <span jhiTranslate="lbApp.ticket.pointOfSale">Point Of Sale</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="tirage.id"><span jhiTranslate="lbApp.ticket.tirage">Tirage</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="userSaleAccount.id">
+            <span jhiTranslate="lbApp.ticket.userSaleAccount">User Sale Account</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ticket of tickets; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/ticket-my-suffix', ticket.id, 'view']">{{ ticket.id }}</a>
+          </td>
+          <td>{{ ticket.ticketNo }}</td>
+          <td jhiTranslate="{{ 'lbApp.StatutFiche.' + ticket.statutFiche }}">{{ ticket.statutFiche }}</td>
+          <td>{{ ticket.closeBy }}</td>
+          <td>{{ ticket.closeDate | formatMediumDatetime }}</td>
+          <td>{{ ticket.isClosed }}</td>
+          <td>{{ ticket.closeById }}</td>
+          <td>{{ ticket.payBy }}</td>
+          <td>{{ ticket.payDate | formatMediumDatetime }}</td>
+          <td>{{ ticket.isPay }}</td>
+          <td>{{ ticket.payById }}</td>
+          <td>{{ ticket.createdBy }}</td>
+          <td>{{ ticket.createdDate | formatMediumDatetime }}</td>
+          <td>{{ ticket.lastModifiedBy }}</td>
+          <td>{{ ticket.lastModifiedDate | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="ticket.pointOfSale">
+              <a [routerLink]="['/point-of-sale-my-suffix', ticket.pointOfSale?.id, 'view']">{{ ticket.pointOfSale?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="ticket.tirage">
+              <a [routerLink]="['/tirage-my-suffix', ticket.tirage?.id, 'view']">{{ ticket.tirage?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="ticket.userSaleAccount">
+              <a [routerLink]="['/user-sale-account-my-suffix', ticket.userSaleAccount?.id, 'view']">{{ ticket.userSaleAccount?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/ticket-my-suffix', ticket.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/ticket-my-suffix', ticket.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(ticket)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="tickets && tickets.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

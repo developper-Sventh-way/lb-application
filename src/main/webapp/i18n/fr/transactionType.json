@@ -1,0 +1,10 @@
+{
+  "lbApp": {
+    "TransactionType": {
+      "null": "",
+      "DEPOT": "DEPOT",
+      "RETRAIT": "RETRAIT",
+      "VIREMENT": "VIREMENT"
+    }
+  }
+}

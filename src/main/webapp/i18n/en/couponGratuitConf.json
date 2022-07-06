@@ -1,0 +1,31 @@
+{
+  "lbApp": {
+    "couponGratuitConf": {
+      "home": {
+        "title": "Coupon Gratuit Confs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Coupon Gratuit Conf",
+        "createOrEditLabel": "Create or edit a Coupon Gratuit Conf",
+        "notFound": "No Coupon Gratuit Confs found"
+      },
+      "created": "A new Coupon Gratuit Conf is created with identifier {{ param }}",
+      "updated": "A Coupon Gratuit Conf is updated with identifier {{ param }}",
+      "deleted": "A Coupon Gratuit Conf is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Coupon Gratuit Conf {{ id }}?"
+      },
+      "detail": {
+        "title": "Coupon Gratuit Conf"
+      },
+      "id": "Id",
+      "typeOption": "Type Option",
+      "maximumCount": "Maximum Count",
+      "obstinateAmount": "Obstinate Amount",
+      "statut": "Statut",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date"
+    }
+  }
+}

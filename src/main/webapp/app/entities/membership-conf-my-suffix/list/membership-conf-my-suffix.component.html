@@ -1,0 +1,134 @@
+<div>
+  <h2 id="page-heading" data-cy="MembershipConfHeading">
+    <span jhiTranslate="lbApp.membershipConf.home.title">Membership Confs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="lbApp.membershipConf.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-membership-conf-my-suffix"
+        [routerLink]="['/membership-conf-my-suffix/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="lbApp.membershipConf.home.createLabel"> Create a new Membership Conf </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="membershipConfs?.length === 0">
+    <span jhiTranslate="lbApp.membershipConf.home.notFound">No membershipConfs found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="membershipConfs && membershipConfs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="lbApp.membershipConf.id">Id</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nomClient">
+            <span jhiTranslate="lbApp.membershipConf.nomClient">Nom Client</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="slogan">
+            <span jhiTranslate="lbApp.membershipConf.slogan">Slogan</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="telephones">
+            <span jhiTranslate="lbApp.membershipConf.telephones">Telephones</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="adresse">
+            <span jhiTranslate="lbApp.membershipConf.adresse">Adresse</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="infos">
+            <span jhiTranslate="lbApp.membershipConf.infos">Infos</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="logoLink">
+            <span jhiTranslate="lbApp.membershipConf.logoLink">Logo Link</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="lbApp.membershipConf.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdDate">
+            <span jhiTranslate="lbApp.membershipConf.createdDate">Created Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="lbApp.membershipConf.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedDate">
+            <span jhiTranslate="lbApp.membershipConf.lastModifiedDate">Last Modified Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let membershipConf of membershipConfs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/membership-conf-my-suffix', membershipConf.id, 'view']">{{ membershipConf.id }}</a>
+          </td>
+          <td>{{ membershipConf.nomClient }}</td>
+          <td>{{ membershipConf.slogan }}</td>
+          <td>{{ membershipConf.telephones }}</td>
+          <td>{{ membershipConf.adresse }}</td>
+          <td>{{ membershipConf.infos }}</td>
+          <td>{{ membershipConf.logoLink }}</td>
+          <td>{{ membershipConf.createdBy }}</td>
+          <td>{{ membershipConf.createdDate | formatMediumDatetime }}</td>
+          <td>{{ membershipConf.lastModifiedBy }}</td>
+          <td>{{ membershipConf.lastModifiedDate | formatMediumDatetime }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/membership-conf-my-suffix', membershipConf.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/membership-conf-my-suffix', membershipConf.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(membershipConf)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="membershipConfs && membershipConfs.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

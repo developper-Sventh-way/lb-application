@@ -1,0 +1,27 @@
+{
+  "lbApp": {
+    "limitConfManager": {
+      "home": {
+        "title": "LimitConfManagers",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Limit Conf Manager",
+        "createOrEditLabel": "Créer ou éditer un Limit Conf Manager",
+        "notFound": "Aucun Limit Conf Manager trouvé"
+      },
+      "created": "Un nouveau Limit Conf Manager a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Limit Conf Manager avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Limit Conf Manager avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Limit Conf Manager {{ id }} ?"
+      },
+      "detail": {
+        "title": "Limit Conf Manager"
+      },
+      "id": "Id",
+      "nombreValue": "Nombre Value",
+      "limit": "Limit",
+      "limitStatut": "Limit Statut",
+      "membershipConf": "Membership Conf"
+    }
+  }
+}

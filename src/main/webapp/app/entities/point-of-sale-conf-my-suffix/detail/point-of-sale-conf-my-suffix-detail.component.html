@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="pointOfSaleConf">
+      <h2 data-cy="pointOfSaleConfDetailsHeading"><span jhiTranslate="lbApp.pointOfSaleConf.detail.title">Point Of Sale Conf</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbApp.pointOfSaleConf.id">Id</span></dt>
+        <dd>
+          <span>{{ pointOfSaleConf.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pointOfSaleConf.pourcentageCaissier">Pourcentage Caissier</span></dt>
+        <dd>
+          <span>{{ pointOfSaleConf.pourcentageCaissier }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pointOfSaleConf.pourcentageResponsable">Pourcentage Responsable</span></dt>
+        <dd>
+          <span>{{ pointOfSaleConf.pourcentageResponsable }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pointOfSaleConf.startTime">Start Time</span></dt>
+        <dd>
+          <span>{{ pointOfSaleConf.startTime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pointOfSaleConf.endTime">End Time</span></dt>
+        <dd>
+          <span>{{ pointOfSaleConf.endTime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pointOfSaleConf.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ pointOfSaleConf.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pointOfSaleConf.createdDate">Created Date</span></dt>
+        <dd>
+          <span>{{ pointOfSaleConf.createdDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pointOfSaleConf.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ pointOfSaleConf.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="lbApp.pointOfSaleConf.lastModifiedDate">Last Modified Date</span></dt>
+        <dd>
+          <span>{{ pointOfSaleConf.lastModifiedDate | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/point-of-sale-conf-my-suffix', pointOfSaleConf.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

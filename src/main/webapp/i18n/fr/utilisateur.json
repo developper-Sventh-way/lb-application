@@ -1,0 +1,43 @@
+{
+  "lbApp": {
+    "utilisateur": {
+      "home": {
+        "title": "Utilisateurs",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Utilisateur",
+        "createOrEditLabel": "Créer ou éditer un Utilisateur",
+        "notFound": "Aucun Utilisateur trouvé"
+      },
+      "created": "Un nouveau Utilisateur a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Utilisateur avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Utilisateur avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Utilisateur {{ id }} ?"
+      },
+      "detail": {
+        "title": "Utilisateur"
+      },
+      "id": "Id",
+      "userName": "User Name",
+      "password": "Password",
+      "typeUser": "Type User",
+      "nom": "Nom",
+      "prenom": "Prenom",
+      "sexe": "Sexe",
+      "nifOuCin": "Nif Ou Cin",
+      "statut": "Statut",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date",
+      "creditSolde": "Credit Solde",
+      "userPaymentConf": "User Payment Conf",
+      "pointOfSaleMembership": "Point Of Sale Membership",
+      "paiementBanque": "Paiement Banque",
+      "userSaleAccount": "User Sale Account",
+      "userRole": "User Role",
+      "userPayment": "User Payment",
+      "pointOfSale": "Point Of Sale"
+    }
+  }
+}
